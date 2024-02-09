@@ -1,5 +1,5 @@
 <?php
-    $conn = mysqli_connect('localhost', 'root', 'pizzaRoll7', 'addLibDatabase');
+    $conn = mysqli_connect('localhost', 'u222517993_localhost', 'pizzaRoll7', 'u222517993_addLibDatabase');
 
     if (!$conn)
     {
