@@ -35,7 +35,7 @@
 
     function loginMsg ()
     {
-        if ((!isset($_post["username"]) || !isset($_post["password"])))
+        if ((isset($_POST["username"]) || isset($_POST["password"])))
         {
             if (!testCredentials($_POST['username'],$_POST['password']))
             {
