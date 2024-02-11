@@ -1,10 +1,10 @@
 <?php
-    $conn;
-
     session_start();
 
     function testCredentials ($username, $password)
     {
+        global $conn;
+
         $sql = 'SELECT * FROM users WHERE username = '.$username.' LIMIT 1';
         $user = mysqli_query($conn, $sql);
         return $user['password'] == $password;
@@ -12,7 +12,10 @@
 
     function login ()
     {
-        if ((!isset($_SESSION["username"]) || !isset($_SESSION["password"])))
+        if (
+            (!isset($_SESSION["username"]) || !isset($_SESSION["password"])) ||
+            !testCredentials($_SESSION['username'],$_SESSION['password'])
+        )
         {
             if (isset($_POST['username']) && isset($_POST['password']))
             {

@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="https://classless.de/classless.css">
     </head>
 
-    <h1>New Post</h1>
+    <h1>Log In</h1>
     <div>
         <form action="" method = "post">
             <div style="color:red;"><?php loginMsg();?></div>
