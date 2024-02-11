@@ -11,7 +11,7 @@
         {
             $where = "WHERE userId = '".$userId."' ";
         }
-        $sql = "SELECT * FROM posts "$where" ORDER BY "$sortType" "$sortOrder" LIMIT '"$showCount"'";
+        $sql = "SELECT * FROM posts ".$where." ORDER BY "$sortType" "$sortOrder" LIMIT '"$showCount"'";
 
         $result = mysqli_query($conn, $sql);
         return $result;
