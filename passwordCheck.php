@@ -24,8 +24,8 @@
 
                 if ($result)
                 {
-                    $_SESSION['username'] = isset($_POST['username']);
-                    $_SESSION['password'] = isset($_POST['password']);
+                    $_SESSION['username'] = $_POST['username'];
+                    $_SESSION['password'] = $_POST['password'];
                     return true;
                 }
             }
