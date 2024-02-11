@@ -15,6 +15,10 @@
         She _ My _ Till I _
     </h2>
 
+    <form action="newPost.php">
+        <input type="submit" value = "New Post">
+    </form>
+
     <?php
         printRecent();
     ?>

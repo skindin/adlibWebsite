@@ -28,5 +28,7 @@
             <br>
             <input type="submit" value = "Login" name = "logIn">
         </form>
+        <br>
+        <a href="newUser.php">New User</a>
     </div>
 </html>
