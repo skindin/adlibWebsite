@@ -25,10 +25,7 @@
                 {
                     $_SESSION['username'] = $username;
                     $_SESSION['password'] = $password;
-                }
-                else
-                {
-                    header("Location: login.php"); exit();
+                    exit();
                 }
             }
 

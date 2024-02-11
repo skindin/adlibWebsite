@@ -54,5 +54,6 @@
             <div style="color:red;"><?php echo $passwordMsg;?></div>
             <input type="submit" value = "Create Account" name = "createUser">
         </form>
+        <a href="login.php">Login with existing user</a>
     </div>
 </html>
