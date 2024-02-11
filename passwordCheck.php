@@ -1,6 +1,8 @@
 <?php
     include('database_check.php');
 
+    $conn;
+
     session_start();
 
     function testCredentials ($username, $password)
