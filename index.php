@@ -1,5 +1,6 @@
 <?php
-    include('passwordCheck.php');
+    include('passwordCheck.php'); login();
+    include('postList.php');
 ?>
 
 <!DOCTYPE html>
@@ -13,10 +14,7 @@
         She _ My _ Till I _
     </h2>
 
-    <form action="addlibList.php" method = "post">
-        <label for="password">Watts the password?</label>
-        <input type="password" name="password">
-        <input type="submit" value = "Log In">
-        <div style="color:red;"><?php passwordMsg();?></div>
-    </form>
+    <?php
+        printRecent();
+    ?>
 </html>
