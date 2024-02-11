@@ -3,9 +3,14 @@
     include('database_check.php');
     include("passwordCheck.php");
 
+    $loginMsg = '';
+
     if (isset($_POST['logIn']))
     {
-        header('Location: index.php');
+        if (login(false))
+        {
+            $loginMsg = 'Incorrect information';
+        }
     }
 ?>
 
@@ -19,7 +24,7 @@
     <h1>Log In</h1>
     <div>
         <form action="" method = "post">
-            <div style="color:red;"><?php loginMsg();?></div>
+            <div style="color:red;"><?php echo $loginMsg;?></div>
             <label for="username">Username</label>
             <input type="username" name = "username">
             <br>
