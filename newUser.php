@@ -41,17 +41,17 @@
         <link rel="stylesheet" href="https://classless.de/classless.css">
     </head>
 
-    <h1>New Post</h1>
+    <h1>New User</h1>
     <div>
         <form action="" method = "post">
             <label for="username">New Username</label>
             <input type="username" name = "username">
-            <div style="color:red;"><?php $usernameMsg;?></div>
+            <div style="color:red;"><?php echo $usernameMsg;?></div>
             <label for="password">Password</label>
             <input type="password" name = "password">
             <label for="password">Confirm Password</label>
             <input type="password" name = "confirmPassword">
-            <div style="color:red;"><?php $passwordMsg;?></div>
+            <div style="color:red;"><?php echo $passwordMsg;?></div>
             <input type="submit" value = "Create Account" name = "createUser">
         </form>
     </div>
