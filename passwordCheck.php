@@ -5,7 +5,7 @@
 
     function testCredentials ($username, $password)
     {
-        $sql = 'SELECT * FROM users WHERE username = '$username' LIMIT 1';
+        $sql = 'SELECT * FROM users WHERE username = '.$username.' LIMIT 1';
         $user = mysqli_query($conn, $sql);
         return $user['password'] == $password;
     }

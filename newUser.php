@@ -8,7 +8,7 @@
     {
         $go = true;
 
-        $sql = 'SELECT * FROM users WHERE username = '$_POST['username']' LIMIT 1';
+        $sql = 'SELECT * FROM users WHERE username = '.$_POST['username'].' LIMIT 1';
         $result = mysqli_connect($conn,$sql);
         $userCount = mysqli_num_rows($result);
 
