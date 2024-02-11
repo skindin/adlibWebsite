@@ -46,17 +46,12 @@
         <form action="" method = "post">
             <label for="username">New Username</label>
             <input type="username" name = "username">
-            <br>
-            <?php print $usernameMsg; ?>
-            <br>
+            <div style="color:red;"><?php $usernameMsg;?></div>
             <label for="password">Password</label>
             <input type="password" name = "password">
-            <br>
             <label for="password">Confirm Password</label>
             <input type="password" name = "confirmPassword">
-            <br>
-            <?php print $passwordMsg; ?>
-            <br>
+            <div style="color:red;"><?php $passwordMsg;?></div>
             <input type="submit" value = "Create Account" name = "createUser">
         </form>
     </div>
