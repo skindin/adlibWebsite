@@ -9,7 +9,7 @@
     {
         $go = true;
 
-        $sql = "SELECT * FROM users WHERE username = '".$_POST['username']."' LIMIT 1";
+        $sql = "SELECT * FROM users WHERE username = ".$_POST['username']." LIMIT 1";
         $result = mysqli_query($conn,$sql);
         $userCount = mysqli_num_rows($result);
 
@@ -27,7 +27,7 @@
 
         if ($go)
         {
-            $sql = "INSERT INTO users (username, password) VALUES ('".$_POST['username']."', '".$_POST['password']."')";
+            $sql = "INSERT INTO users (username, password) VALUES (".$_POST['username'].", ".$_POST['password'].")";
             $result = mysqli_query($conn, $sql);
             header("Location: index.php");
         }
