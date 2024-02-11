@@ -10,7 +10,7 @@
         return $user['password'] == $password;
     }
 
-    function login ()
+    function login ($redirect = true)
     {
         if (
             (!isset($_SESSION["username"]) || !isset($_SESSION["password"])) ||
@@ -25,24 +25,27 @@
                 {
                     $_SESSION['username'] = $username;
                     $_SESSION['password'] = $password;
-                    exit();
+                    return true;
                 }
             }
 
-            header("Location: login.php"); exit();
+            if ($redirect)
+            {
+                header("Location: login.php"); exit();
+            }
+
+            return false;
         }
+        return true;
     }
 
-    function loginMsg ()
-    {
-        if ((isset($_POST["username"]) || isset($_POST["password"])))
-        {
-            if (!testCredentials($_POST['username'],$_POST['password']))
-            {
-                echo "Incorrect login information";
-            }
-        }
-    }
+    // function  ()
+    // {
+    //     if ((isset($_POST["username"]) || isset($_POST["password"])))
+    //     {
+    //         return testCredentials($_POST['username'],$_POST['password']);
+    //     }
+    // }
 
     // if (isset($_POST['password']))
     // {
