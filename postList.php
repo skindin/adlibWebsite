@@ -9,9 +9,9 @@
         $where ='';
         if ($userId >= 0) //gonna have to do a lot of filtering here
         {
-            $where = "WHERE userId = ".$userId." ";
+            $where = "WHERE userId = '".$userId."' ";
         }
-        $sql = "SELECT * FROM posts ".$where."ORDER BY ".$sortType." ".$sortOrder." LIMIT ".$showCount;
+        $sql = "SELECT * FROM posts "$where" ORDER BY "$sortType" "$sortOrder" LIMIT '"$showCount"'";
 
         $result = mysqli_query($conn, $sql);
         return $result;
