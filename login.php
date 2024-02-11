@@ -5,7 +5,7 @@
 
     if (isset($_POST['logIn']))
     {
-        header('Location: postList.php');
+        header('Location: index.php');
     }
 ?>
 
