@@ -1,6 +1,4 @@
 <?php
-    include('database_check.php');
-
     $conn;
 
     session_start();

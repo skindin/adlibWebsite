@@ -1,5 +1,6 @@
 <?php
     //i don't want to have to include the database check here so put it somewhere before this
+    include('database_check.php');
     include('passwordCheck.php'); login();
 
     $user; //this isn't being assigned to yet!!!

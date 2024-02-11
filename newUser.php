@@ -1,4 +1,5 @@
 <?php
+    include('database_check.php');
     include("passwordCheck.php");
 
     //i don't want to have to include the database check here so put it somewhere before this

@@ -1,13 +1,10 @@
 <?php
     //i don't want to have to include the database check here so put it somewhere before this
-
-    include('database_check.php');
-
     $showCount = 20;
 
     function getPosts($sortType, $sortOrder, $userId = -1)
     {
-        global $showCount;
+        global $showCount, $conn;
 
         $where ='';
         if ($userId >= 0) //gonna have to do a lot of filtering here
