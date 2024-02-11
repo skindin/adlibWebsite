@@ -6,7 +6,8 @@
         global $conn;
 
         $sql = "SELECT * FROM users WHERE username = '".$_POST['username']."' LIMIT 1";
-        $user = mysqli_query($conn, $sql);
+        $result = mysqli_query($conn, $sql);
+        $user = mysqli_fetch_assoc($result);
         return $user['password'] == $password;
     }
 
