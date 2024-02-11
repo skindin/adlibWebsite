@@ -27,8 +27,8 @@
 
         if ($go)
         {
-            $sql = 'INSERT INTO user(username, password) VALUES('.$_POST['username'].', '.$_POST['password'].')';
-            $result = mysqli_query($sql);
+            $sql = "INSERT INTO user (username, password) VALUES ('".$_POST['username']."', '".$_POST['password']."')";
+            $result = mysqli_query($conn, $sql);
             header("Location: index.php");
         }
     }
