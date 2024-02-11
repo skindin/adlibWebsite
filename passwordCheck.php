@@ -35,9 +35,12 @@
 
     function loginMsg ()
     {
-        if (!testCredentials($_POST['username'],$_POST['password']))
+        if ((!isset($_post["username"]) || !isset($_post["password"])))
         {
-            echo "Incorrect login information";
+            if (!testCredentials($_POST['username'],$_POST['password']))
+            {
+                echo "Incorrect login information";
+            }
         }
     }
 
