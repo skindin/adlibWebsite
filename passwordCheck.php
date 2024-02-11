@@ -12,7 +12,7 @@
 
     function login ()
     {
-        if ((!isset($_SESSION("username")) || !isset($_SESSION("password"))))
+        if ((!isset($_SESSION["username"]) || !isset($_SESSION["password"])))
         {
             if (isset($_POST['username']) && isset($_POST['password']))
             {
