@@ -18,20 +18,19 @@
             !testCredentials($_SESSION['username'],$_SESSION['password'])
         )
         {
-            if (isset($_POST['username']) && isset($_POST['password']))
+            if (
+                (isset($_POST['username']) &&
+                isset($_POST['password'])) &&
+                testCredentials($_POST['username'],$_POST['password'])
+            )
             {
-                $result = testCredentials($_POST['username'],$_POST['password']);
-
-                if ($result)
-                {
-                    $_SESSION['username'] = $_POST['username'];
-                    $_SESSION['password'] = $_POST['password'];
-                    return true;
-                }
-                else if ($redirect)
-                {
-                    header("Location: login.php"); exit();
-                }
+                $_SESSION['username'] = $_POST['username'];
+                $_SESSION['password'] = $_POST['password'];
+                return true;
+            }
+            else if ($redirect)
+            {
+                header("Location: login.php"); exit();
             }
 
             return false;
