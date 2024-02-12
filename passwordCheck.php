@@ -38,7 +38,7 @@
             // {
             //     header("Location: login.php"); exit();
             // }
-            echo 'new credentials are also incorrect!'
+            echo 'new credentials are also incorrect!';
 
             return false;
         }
