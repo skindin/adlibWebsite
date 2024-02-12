@@ -35,11 +35,11 @@
     <h1>New Post</h1>
     <div>
         <form action="" method = "post">
-            <h1>
+            <h2>
                 She <input type="text" name = "input1">
                 my <input type="text" name = "input2">
                 till I <input type="text" name = "input3">
-            </h1>
+            </h2>
             <div>
                 <input type="submit" value = "Post" name = "post">
             </div>
