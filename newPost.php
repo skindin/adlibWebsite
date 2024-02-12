@@ -13,7 +13,7 @@
 
         $content = 'She '.$input1.' my '.$input2." 'till I ".$input3;
 
-        $sql = "INSERT INTO posts(userId, userName, content)
+        $sql = "INSERT INTO posts(userId, username, content)
         VALUES ('".$user['userId']."', '".$user['username']."', '".$content."')";
 
         mysqli_query($conn, $sql);
