@@ -11,6 +11,8 @@
         {
             $loginMsg = 'Incorrect information';
         }
+
+        header("Location: index.php");
     }
 ?>
 

@@ -30,12 +30,12 @@
                 }
             }
 
-            // if ($redirect)
-            // {
-            //     header("Location: login.php");
-            //     echo 'redirected';
-            //     exit();
-            // }
+            if ($redirect)
+            {
+                header("Location: login.php");
+                echo 'redirected';
+                exit();
+            }
 
             return false;
         }
