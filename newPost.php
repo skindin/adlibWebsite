@@ -3,7 +3,7 @@
     include('database_check.php');
     include('passwordCheck.php'); login();
 
-    $user; //this isn't being assigned to yet!!!
+    $user = $_SESSION['user'];
 
     if (isset($_POST['post']))
     {
@@ -11,9 +11,11 @@
         $input2 = $_POST['input2'];
         $input3 = $_POST['input3'];
 
-        $content = 'She '$input1' my '$input2" 'till I "$input3'';
+        $content = 'She '.$input1.' my '.$input2." 'till I ".$input3;
 
-        $sql = "INSERT INTO posts(userId, content) VALUES ('".$user['userId']."',".$content."')";
+        $sql = "INSERT INTO posts(userId, userName, content)
+        VALUES ('".$user['userId']."', '".$user['username']."', '".$content."')";
+
         mysqli_query($conn, $sql);
         $sql = "UPDATE users SET posts = posts + 1 WHERE 'userId' = '".$user['userId']."'";
         mysqli_query($conn, $sql);
@@ -34,8 +36,9 @@
             She <input type="text" name = "input1">
             my <input type="text" name = "input2">
             till I <input type="text" name = "input3">
-            <br>
-            <input type="submit" value = "Post" name = "post">
+            <div>
+                <input type="submit" value = "Post" name = "post">
+            </div>
         </form>
     </div>
 </html>

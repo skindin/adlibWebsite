@@ -21,9 +21,9 @@
     {
         foreach ($posts as $post)
         {
-            $username;
-            $content;
-            $timeStamp;
+            $username = $post['username'];
+            $content = $post['content'];
+            $timeStamp = $post['timeStamp'];
 
             echo '<div>';
                 echo '<div>'.$username.'</div>';//gonna have to do that character filter thing here

@@ -10,16 +10,17 @@
         $sql = "SELECT * FROM users WHERE username = '".$username."' LIMIT 1";
         $result = mysqli_query($conn, $sql);
         $user = mysqli_fetch_assoc($result);
-        return $user['password'] == $password;
+        if ($user['password'] == $password)
+        {
+            $_SESSION['user'] = $user;
+            return true;
+        }
+        return false;
     }
 
     function login ($redirect = true)
     {
-        if (
-            !isset($_SESSION['username']) ||
-            !isset($_SESSION['password']) ||
-            !testCredentials($_SESSION['username'],$_SESSION['password'])
-        )
+        if (!isset($_SESSION['user']))
         {
             // echo 'session credentials were empty or incorrect! ';
 
@@ -29,8 +30,8 @@
                 testCredentials($_POST['username'],$_POST['password'])
             )
             {
-                $_SESSION['username'] = $_POST['username'];
-                $_SESSION['password'] = $_POST['password'];
+                // $_SESSION['user']['username'] = $_POST['username'];
+                // $_SESSION['user']['password'] = $_POST['password'];
                 // echo 'session credentials set! ';
                 return true;
             }
