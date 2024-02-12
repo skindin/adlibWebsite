@@ -27,7 +27,7 @@
 
             echo '<div>';
                 echo '<div>'.$username.'</div>';//gonna have to do that character filter thing here
-                echo '<p><h1>'.$content.'</h1></p>';
+                echo '<h1>'.$content.'</h1>';
                 echo '<div>';
                     echo 'Posted '.$timeStamp;
                 echo '</div>';
