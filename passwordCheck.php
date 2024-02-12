@@ -21,6 +21,8 @@
             !testCredentials($_SESSION['username'],$_SESSION['password'])
         )
         {
+            echo 'session credentials were empty or incorrect! ';
+
             if (
                 (isset($_POST['username']) &&
                 isset($_POST['password'])) &&
@@ -29,15 +31,18 @@
             {
                 $_SESSION['username'] = $_POST['username'];
                 $_SESSION['password'] = $_POST['password'];
+                echo 'session credentials set! '
                 return true;
             }
-            else if ($redirect)
-            {
-                header("Location: login.php"); exit();
-            }
+            // else if ($redirect)
+            // {
+            //     header("Location: login.php"); exit();
+            // }
+            echo 'new credentials are also incorrect!'
 
             return false;
         }
+        else echo 'session credentials correct! ';
         return true;
     }
 ?>
