@@ -7,7 +7,7 @@
 
         //definitley gotta do something about this injection vulnerability
 
-        $sql = "SELECT * FROM users WHERE username = '".$_POST['username']."' LIMIT 1";
+        $sql = "SELECT * FROM users WHERE username = '".$username."' LIMIT 1";
         $result = mysqli_query($conn, $sql);
         $user = mysqli_fetch_assoc($result);
         return $user['password'] == $password;
