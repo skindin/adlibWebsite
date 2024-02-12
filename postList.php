@@ -25,11 +25,11 @@
             $content = $post['content'];
             $timeStamp = $post['timeStamp'];
 
-            echo '<div>';
+            echo '<p>';
                 echo $username.'<br>';//gonna have to do that character filter thing here
                 echo $content.'<br>';
                 echo 'Posted '.$timeStamp;
-            echo '</div>';
+            echo '</p>';
         }
     }
 
