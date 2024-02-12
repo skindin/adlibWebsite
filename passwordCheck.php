@@ -5,6 +5,8 @@
     {
         global $conn;
 
+        //definitley gotta do something about this injection vulnerability
+
         $sql = "SELECT * FROM users WHERE username = '".$_POST['username']."' LIMIT 1";
         $result = mysqli_query($conn, $sql);
         $user = mysqli_fetch_assoc($result);
@@ -37,46 +39,4 @@
         }
         return true;
     }
-
-    // function  ()
-    // {
-    //     if ((isset($_POST["username"]) || isset($_POST["password"])))
-    //     {
-    //         return testCredentials($_POST['username'],$_POST['password']);
-    //     }
-    // }
-
-    // if (isset($_POST['password']))
-    // {
-    //     $passEntry = $_POST['password'];
-    //     $_SESSION['password'] = $passEntry;
-    // }
-    // else if (isset($_SESSION['password']))
-    // {
-    //     $passEntry = $_SESSION['password'];
-    // }
-    // else
-    // {
-    //     $set = false;
-    // }
-
-    // function redirect ()
-    // {
-    //     global $passEntry, $password;
-
-    //     if ($passEntry != $password)
-    //     {
-    //         header("Location: index.php"); exit();
-    //     }
-    // }
-
-    // function passwordMsg ()
-    // {
-    //     global $set, $passEntry, $password;
-
-    //     if ($set && $passEntry != $password)
-    //     {
-    //         echo 'Incorrect Password';
-    //     }
-    // }
 ?>
