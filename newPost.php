@@ -19,8 +19,9 @@
         mysqli_query($conn, $sql);
         $sql = "UPDATE users SET posts = posts + 1 WHERE 'userId' = '".$user['userId']."'";
         mysqli_query($conn, $sql);
+
+        header("Location: index.php");// exit(); i don't think exiting is necessary here...?
     }
-    header("Location: index.php");// exit(); i don't think exiting is necessary here...?
 ?>
 
 <!DOCTYPE html>
