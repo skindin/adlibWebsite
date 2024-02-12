@@ -7,7 +7,7 @@
 
     if (isset($_POST['logIn']))
     {
-        if (login(false))
+        if (!login(false))
         {
             $loginMsg = 'Incorrect information';
         }
