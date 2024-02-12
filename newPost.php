@@ -11,7 +11,7 @@
         $input2 = $_POST['input2'];
         $input3 = $_POST['input3'];
 
-        $content = 'She '.$input1.' my '.$input2." 'till I ".$input3;
+        $content = 'She '.$input1.' my '.$input2." till I ".$input3;
 
         $sql = "INSERT INTO posts(userId, username, content)
         VALUES ('".$user['userId']."', '".$user['username']."', '".$content."')";
