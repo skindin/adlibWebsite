@@ -16,10 +16,9 @@
         $sql = "INSERT INTO posts(userId, username, content)
         VALUES ('".$user['userId']."', '".$user['username']."', '".$content."')";
 
-        echo $sql;
-
         mysqli_query($conn, $sql);
         $sql = "UPDATE users SET posts = posts + 1 WHERE 'userId' = '".$user['userId']."'";
+        echo $sql;
         mysqli_query($conn, $sql);
 
         header("Location: index.php");// exit(); i don't think exiting is necessary here...?
