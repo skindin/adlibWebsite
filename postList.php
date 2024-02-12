@@ -26,11 +26,9 @@
             $timeStamp = $post['timeStamp'];
 
             echo '<div>';
-                echo '<div>'.$username.'</div>';//gonna have to do that character filter thing here
-                echo '<h1>'.$content.'</h1>';
-                echo '<div>';
-                    echo 'Posted '.$timeStamp;
-                echo '</div>';
+                echo $username.'<br>';//gonna have to do that character filter thing here
+                echo '<h1>'$content.'</h1><br>';
+                echo 'Posted '.$timeStamp;
             echo '</div>';
         }
     }
