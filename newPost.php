@@ -17,7 +17,8 @@
         VALUES ('".$user['userId']."', '".$user['username']."', '".$content."')";
 
         mysqli_query($conn, $sql);
-        $sql = "UPDATE users SET postCount = postCount + 1 WHERE 'userId' = '".$user['userId']."'";
+        $sql = "UPDATE users SET postCount = postCount + 1 WHERE userId = '".$user['userId']."'";
+
         echo $sql;
         mysqli_query($conn, $sql);
 
