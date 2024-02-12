@@ -31,7 +31,7 @@
             {
                 $_SESSION['username'] = $_POST['username'];
                 $_SESSION['password'] = $_POST['password'];
-                echo 'session credentials set! '
+                echo 'session credentials set! ';
                 return true;
             }
             // else if ($redirect)
