@@ -8,7 +8,7 @@
         $sql = "SELECT * FROM users WHERE username = '".$_POST['username']."' LIMIT 1";
         $result = mysqli_query($conn, $sql);
         $user = mysqli_fetch_assoc($result);
-        return $user['password'] == $password || true;
+        return $user['password'] == $password;
     }
 
     function login ($redirect = true)
@@ -28,11 +28,10 @@
                     $_SESSION['password'] = $_POST['password'];
                     return true;
                 }
-            }
-
-            if ($redirect)
-            {
-                header("Location: login.php"); exit();
+                else if ($redirect)
+                {
+                    header("Location: login.php"); exit();
+                }
             }
 
             return false;
