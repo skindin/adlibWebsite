@@ -27,13 +27,10 @@
             <div style="color:red;"><?php echo $loginMsg;?></div>
             <label for="username">Username</label>
             <input type="username" name = "username">
-            <br>
             <label for="password">Password</label>
             <input type="password" name = "password">
-            <br>
             <input type="submit" value = "Login" name = "logIn">
         </form>
-        <br>
         <a href="newUser.php">New User</a>
     </div>
 </html>

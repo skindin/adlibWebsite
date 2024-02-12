@@ -30,14 +30,13 @@
                 }
             }
 
-            if ($redirect)
-            {
-                header("Location: login.php");
-                echo 'redirected';
-                exit();
-            }
+            // if ($redirect)
+            // {
+            //     header("Location: login.php");
+            //     echo 'redirected';
+            //     exit();
+            // }
 
-            echo 'missing or incorrect info';
             return false;
         }
         return true;
