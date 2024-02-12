@@ -15,11 +15,8 @@
 
     function login ($redirect = true)
     {
-        return true;
-
         if (
-            !isset($_SESSION["username"]) ||
-            !isset($_SESSION["password"]) ||
+            (!isset($_SESSION["username"]) || !isset($_SESSION["password"])) ||
             !testCredentials($_SESSION['username'],$_SESSION['password'])
         )
         {
