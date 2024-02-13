@@ -59,7 +59,7 @@ function printPosts($posts)
         $timeStamp = $post['timeStamp'];
 
         echo '<p>';
-            echo $username.'<br>';
+            echo "<a href = '#userPage.php?user=".$username."'>"$username.'</a><br>';
             echo $content.'<br>';
             echo 'Posted '.$timeStamp;
         echo '</p>';

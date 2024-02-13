@@ -1,16 +1,13 @@
 <?php
 session_start();
 
-function testCredentials($username, $password) {
-    global $conn;
-
-    // Prepared statement to prevent SQL injection
+function getUser ($username)
+{
     $sql = "SELECT * FROM users WHERE username = ? LIMIT 1";
     $stmt = mysqli_prepare($conn, $sql);
     if (!$stmt) {
         // Handle error
         echo "Error: " . mysqli_error($conn);
-        return false;
     }
 
     // Bind parameters
@@ -20,7 +17,6 @@ function testCredentials($username, $password) {
     if (!mysqli_stmt_execute($stmt)) {
         // Handle error
         echo "Error: " . mysqli_stmt_error($stmt);
-        return false;
     }
 
     // Get result
@@ -28,11 +24,16 @@ function testCredentials($username, $password) {
     if (!$result) {
         // Handle error
         echo "Error: " . mysqli_stmt_error($stmt);
-        return false;
     }
 
     // Fetch user data
-    $user = mysqli_fetch_assoc($result);
+    return mysqli_fetch_assoc($result);
+}
+
+function testCredentials($username, $password) {
+    global $conn;
+
+    $user = getUser($username);
     if (!$user) {
         // No user found
         echo 'no users with that username';
@@ -50,7 +51,6 @@ function testCredentials($username, $password) {
         return false;
     }
 }
-
 
 function login ($redirect = true)
 {
