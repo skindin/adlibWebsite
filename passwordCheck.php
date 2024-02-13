@@ -46,7 +46,7 @@ function testCredentials($username, $password) {
         return true;
     } else {
         // Password doesn't match
-        echo 'Error: '.$user['password'].' != '.password_hash($password, PASSWORD_DEFAULT);
+        echo 'Error: '.$password.' doesnt correspond with '.$user['password'];
         return false;
     }
 }
@@ -56,7 +56,7 @@ function login ($redirect = true)
 {
     // return true;
 
-    if (!isset($_SESSION['user']))
+    if (!isset($_SESSION['user']))//this might cause problems
     {
         if (isset($_POST['username']) && isset($_POST['password']))
         {
