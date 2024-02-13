@@ -63,11 +63,11 @@ function login ($redirect = true)
                 return true;
             }
         }
-        if ($redirect)
-        {
-            header("Location: login.php");
-            exit();
-        }
+        // if ($redirect)
+        // {
+        //     header("Location: login.php");
+        //     exit();
+        // }
         return false;
     }
     return true;
