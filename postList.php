@@ -21,11 +21,17 @@ function getPosts($sortType, $sortOrder, $userId = -1)
         return false;
     }
 
-    // Create bind types string
-    $bindTypes = str_repeat('s', count($params) - 1) . 'i'; // 's' for string, 'i' for integer
+    // Ensure $params is not empty
+    if (!empty($params)) {
+        // Create bind types string
+        $bindTypes = str_repeat('s', count($params) - 1) . 'i'; // 's' for string, 'i' for integer
 
-    // Bind parameters
-    mysqli_stmt_bind_param($stmt, $bindTypes, ...$params);
+        // Bind parameters
+        mysqli_stmt_bind_param($stmt, $bindTypes, ...$params);
+    } else {
+        // If $params is empty, bind only the integer parameter
+        mysqli_stmt_bind_param($stmt, 'i', $showCount);
+    }
 
 
     // Execute statement
