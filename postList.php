@@ -24,14 +24,16 @@ function getPosts($sortType, $sortOrder, $userId = -1)
     // Ensure $params is not empty
     if (!empty($params)) {
         // Create bind types string
-        $bindTypes = str_repeat('s', count($params) - 1) . 'i'; // 's' for string, 'i' for integer
+        $bindTypes = str_repeat('s', count($params)); // 's' for string
 
         // Bind parameters
         mysqli_stmt_bind_param($stmt, $bindTypes, ...$params);
     } else {
-        // If $params is empty, bind only the integer parameter
-        mysqli_stmt_bind_param($stmt, 'i', $showCount);
+        // If $params is empty, there are no parameters to bind
+        // You may need to handle this case differently based on your requirements
+        // For now, let's assume there's no need to bind any parameters
     }
+
 
 
     // Execute statement
