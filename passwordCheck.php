@@ -2,7 +2,6 @@
 session_start();
 
 function testCredentials($username, $password) {
-    // return true;
     global $conn;
 
     // Prepared statement to prevent SQL injection
@@ -64,11 +63,11 @@ function login ($redirect = true)
                 return true;
             }
         }
-        // if ($redirect)
-        // {
-        //     header("Location: login.php");
-        //     exit();
-        // }
+        if ($redirect)
+        {
+            header("Location: login.php");
+            exit();
+        }
         return false;
     }
     return true;
