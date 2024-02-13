@@ -1,38 +1,47 @@
 <?php
-    include('database_check.php');
-    include("passwordCheck.php");
+include('database_check.php');
+include('passwordCheck.php');
 
-    //i don't want to have to include the database check here so put it somewhere before this
-    $usernameMsg = '';
-    $passwordMsg = '';
-    if (isset($_POST['createUser']))
-    {
-        $go = true;
+// It's recommended to handle database check in 'database_check.php' to ensure consistency across your application.
 
-        $sql = "SELECT * FROM users WHERE username = '".$_POST['username']."' LIMIT 1";
-        $result = mysqli_query($conn,$sql);
-        $userCount = mysqli_num_rows($result);
+$usernameMsg = '';
+$passwordMsg = '';
 
-        if ($userCount>0)
-        {
-            $usernameMsg = 'That username is taken!';
-            $go = false;
-        }
+if (isset($_POST['createUser'])) {
+    $go = true;
 
-        if ($_POST['password'] != $_POST['confirmPassword'])
-        {
-            $passwordMsg = "Passwords don't match!";
-            $go = false;
-        }
+    // Prepare SQL statement to select user by username
+    $sql = "SELECT * FROM users WHERE username = ? LIMIT 1";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "s", $_POST['username']);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $userCount = mysqli_num_rows($result);
 
-        if ($go)
-        {
-            $sql = "INSERT INTO users (username, password) VALUES ('".$_POST['username']."', '".$_POST['password']."')";
-            $result = mysqli_query($conn, $sql);
-            header("Location: index.php");
-        }
+    if ($userCount > 0) {
+        $usernameMsg = 'That username is taken!';
+        $go = false;
     }
+
+    if ($_POST['password'] != $_POST['confirmPassword']) {
+        $passwordMsg = "Passwords don't match!";
+        $go = false;
+    }
+
+    if ($go) {
+        // Prepare SQL statement to insert new user
+        $sql = "INSERT INTO users (username, password) VALUES (?, ?)";
+        $stmt = mysqli_prepare($conn, $sql);
+        // Hash the password before storing it
+        $hashedPassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        mysqli_stmt_bind_param($stmt, "ss", $_POST['username'], $hashedPassword);
+        mysqli_stmt_execute($stmt);
+        header("Location: index.php");
+        exit(); // Exit after redirection
+    }
+}
 ?>
+
 
 <!DOCTYPE html>
 <html>

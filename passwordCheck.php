@@ -1,49 +1,44 @@
 <?php
-    session_start();
+session_start();
 
-    function testCredentials ($username, $password)
+function testCredentials ($username, $password)
+{
+    global $conn;
+
+    // Prepared statement to prevent SQL injection
+    $sql = "SELECT * FROM users WHERE username = ? LIMIT 1";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "s", $username);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $user = mysqli_fetch_assoc($result);
+
+    if ($user && password_verify($password, $user['password']))
     {
-        global $conn;
+        $_SESSION['user'] = $user;
+        return true;
+    }
+    return false;
+}
 
-        //definitley gotta do something about this injection vulnerability
-
-        $sql = "SELECT * FROM users WHERE username = '".$username."' LIMIT 1";
-        $result = mysqli_query($conn, $sql);
-        $user = mysqli_fetch_assoc($result);
-        if ($user['password'] == $password)
+function login ($redirect = true)
+{
+    if (!isset($_SESSION['user']))
+    {
+        if (isset($_POST['username']) && isset($_POST['password']))
         {
-            $_SESSION['user'] = $user;
-            return true;
+            if (testCredentials($_POST['username'], $_POST['password']))
+            {
+                return true;
+            }
+        }
+        if ($redirect)
+        {
+            header("Location: login.php");
+            exit();
         }
         return false;
     }
-
-    function login ($redirect = true)
-    {
-        if (!isset($_SESSION['user']))
-        {
-            // echo 'session credentials were empty or incorrect! ';
-
-            if (
-                (isset($_POST['username']) &&
-                isset($_POST['password'])) &&
-                testCredentials($_POST['username'],$_POST['password'])
-            )
-            {
-                // $_SESSION['user']['username'] = $_POST['username'];
-                // $_SESSION['user']['password'] = $_POST['password'];
-                // echo 'session credentials set! ';
-                return true;
-            }
-            else if ($redirect)
-            {
-                header("Location: login.php"); exit();
-            }
-            // echo 'new credentials are also incorrect!';
-
-            return false;
-        }
-        // else echo 'session credentials correct! ';
-        return true;
-    }
+    return true;
+}
 ?>
