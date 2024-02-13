@@ -4,7 +4,6 @@
     if (isset($_POST['logout']))
     {
         header("Location: login.php");
-        unset($_SESSION['user']);
-        unset($_POST['logout']);
+        // unset($_SESSION['user']);
     }
 ?>
