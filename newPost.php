@@ -2,6 +2,7 @@
     include('database_check.php');
     include('passwordCheck.php');
     login();
+    include('logout.php');
 
     $user = $_SESSION['user'];
 
