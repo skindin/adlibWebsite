@@ -3,6 +3,8 @@ session_start();
 
 function getUser ($username)
 {
+    global $conn;
+
     $sql = "SELECT * FROM users WHERE username = ? LIMIT 1";
     $stmt = mysqli_prepare($conn, $sql);
     if (!$stmt) {
@@ -31,7 +33,6 @@ function getUser ($username)
 }
 
 function testCredentials($username, $password) {
-    global $conn;
 
     $user = getUser($username);
     if (!$user) {
