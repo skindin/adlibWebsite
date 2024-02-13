@@ -46,7 +46,7 @@ function testCredentials($username, $password) {
         return true;
     } else {
         // Password doesn't match
-        echo 'password didnt match according to chatcpts stupid logic';
+        echo 'Error: '.$user['password'].' != '.password_hash($password, PASSWORD_DEFAULT);
         return false;
     }
 }
