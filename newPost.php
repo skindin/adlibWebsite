@@ -1,30 +1,42 @@
 <?php
-    //i don't want to have to include the database check here so put it somewhere before this
     include('database_check.php');
-    include('passwordCheck.php'); login();
+    include('passwordCheck.php');
+    login();
 
     $user = $_SESSION['user'];
 
     if (isset($_POST['post']))
     {
-        $input1 = $_POST['input1'];
-        $input2 = $_POST['input2'];
-        $input3 = $_POST['input3'];
+        $input1 = htmlspecialchars($_POST['input1']); // Sanitize input against JS injection
+        $input2 = htmlspecialchars($_POST['input2']); // Sanitize input against JS injection
+        $input3 = htmlspecialchars($_POST['input3']); // Sanitize input against JS injection
 
+        // Prepared statement to prevent SQL injection
+        $sql = "INSERT INTO posts(userId, username, content) VALUES (?, ?, ?)";
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, "iss", $user['userId'], $user['username'], $content);
+
+        // Combine input into content variable
         $content = 'She '.$input1.' my '.$input2." till I ".$input3;
 
-        $sql = "INSERT INTO posts(userId, username, content)
-        VALUES ('".$user['userId']."', '".$user['username']."', '".$content."')";
+        // Execute prepared statement
+        mysqli_stmt_execute($stmt);
 
-        mysqli_query($conn, $sql);
-        $sql = "UPDATE users SET postCount = postCount + 1 WHERE userId = '".$user['userId']."'";
+        // Close statement
+        mysqli_stmt_close($stmt);
 
-        echo $sql;
-        mysqli_query($conn, $sql);
+        // Increment post count with prepared statement
+        $sql = "UPDATE users SET postCount = postCount + 1 WHERE userId = ?";
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, "i", $user['userId']);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
 
-        header("Location: index.php");// exit(); i don't think exiting is necessary here...?
+        header("Location: index.php");
+        exit(); // Exit after redirection
     }
 ?>
+
 
 <!DOCTYPE html>
 <html>
