@@ -45,6 +45,7 @@ function testCredentials($username, $password) {
         return true;
     } else {
         // Password doesn't match
+        echo 'password didnt match according to chatcpts stupid logic';
         return false;
     }
 }
