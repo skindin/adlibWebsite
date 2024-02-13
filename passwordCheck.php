@@ -46,7 +46,7 @@ function testCredentials($username, $password) {
         return true;
     } else {
         // Password doesn't match
-        echo 'Error: '.$password.' doesnt correspond with '.$user['password'];
+        // echo 'Error: '.$password.' doesnt correspond with '.$user['password'];
         return false;
     }
 }
