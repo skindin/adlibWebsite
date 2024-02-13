@@ -35,6 +35,7 @@ function testCredentials($username, $password) {
     $user = mysqli_fetch_assoc($result);
     if (!$user) {
         // No user found
+        echo 'no users with that username';
         return false;
     }
 
