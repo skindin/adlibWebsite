@@ -36,6 +36,7 @@ if (isset($_POST['createUser'])) {
         $hashedPassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
         mysqli_stmt_bind_param($stmt, "ss", $_POST['username'], $hashedPassword);
         mysqli_stmt_execute($stmt);
+        login();
         header("Location: index.php");
         exit(); // Exit after redirection
     }

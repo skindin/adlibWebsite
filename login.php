@@ -28,11 +28,11 @@
     <h1>Log In</h1>
     <div>
         <form action="" method = "post">
-            <div style="color:red;"><?php echo $loginMsg;?></div>
             <label for="username">Username</label>
             <input type="username" name = "username">
             <label for="password">Password</label>
             <input type="password" name = "password">
+            <div style="color:red;"><?php echo $loginMsg;?></div>
             <input type="submit" value = "Login" name = "logIn">
         </form>
         <a href="newUser.php">New User</a>
