@@ -5,5 +5,6 @@
     {
         header("Location: login.php");
         unset($_SESSION['user']);
+        unset($_POST['logout']);
     }
 ?>
