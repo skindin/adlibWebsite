@@ -21,9 +21,14 @@ function getPosts($sortType, $sortOrder, $userId = -1)
         return false;
     }
 
+    // Add the show count to parameters
+    $params[] = $showCount;
+
+    // Create bind types string
+    $bindTypes = str_repeat('s', count($params) - 1) . 'i'; // 's' for string, 'i' for integer
+
     // Bind parameters
-    $bindTypes = str_repeat('s', count($params)) . 'i'; // 's' for string, 'i' for integer
-    mysqli_stmt_bind_param($stmt, $bindTypes, ...$params, $showCount);
+    mysqli_stmt_bind_param($stmt, $bindTypes, ...$params);
 
     // Execute statement
     mysqli_stmt_execute($stmt);
