@@ -22,17 +22,21 @@
             $userId = $user['userId'];
         }
     }
+
+    $pageName = $username."'s Posts";
 ?>
 
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Funny Add Lib</title>
+        <title>
+            <?php echo $pageName?>
+        </title>
         <link rel="stylesheet" href="https://classless.de/classless.css">
     </head>
 
     <h2>
-        <?php echo $username."'s Posts";?>
+        <?php echo $pageName?>
     </h2>
 
     <?php

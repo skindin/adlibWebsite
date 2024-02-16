@@ -42,7 +42,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Funny Add Lib</title>
+        <title>New Post</title>
         <link rel="stylesheet" href="https://classless.de/classless.css">
     </head>
 

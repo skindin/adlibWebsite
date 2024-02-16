@@ -21,7 +21,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Funny Add Lib</title>
+        <title>Log In</title>
         <link rel="stylesheet" href="https://classless.de/classless.css">
     </head>
 

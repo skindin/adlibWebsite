@@ -47,7 +47,7 @@ if (isset($_POST['createUser'])) {
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Funny Add Lib</title>
+        <title>New User</title>
         <link rel="stylesheet" href="https://classless.de/classless.css">
     </head>
 
