@@ -12,7 +12,7 @@ function getPosts($sortType, $sortOrder, $userId = -1)
         $where = "WHERE userId = ?";
     }
 
-    $sql = "SELECT * FROM posts ".$where." ORDER BY ".$sortType." ".$sortOrder." LIMIT ".$showCount;
+    $sql = "SELECT * FROM posts ".$where." ORDER BY ".$sortType." ".$sortOrder;//." LIMIT ".$showCount;
 
     if ($userId >= 0)
     {
@@ -40,19 +40,24 @@ function getPosts($sortType, $sortOrder, $userId = -1)
     }
 }
 
+function printPost($post)
+{
+    $username = htmlspecialchars($post['username']); // Sanitize against potential HTML/JS injection
+    $content = htmlspecialchars($post['content']); // Sanitize against potential HTML/JS injection
+    $timeStamp = $post['timeStamp'];
+
+    echo '<p>';
+        echo "<a href = 'userPage.php?user=".$username."'>".$username.'</a><br>';
+        echo $content.'<br>';
+        echo 'Posted '.$timeStamp;
+    echo '</p>';
+}
+
 function printPosts($posts)
 {
     foreach ($posts as $post)
     {
-        $username = htmlspecialchars($post['username']); // Sanitize against potential HTML/JS injection
-        $content = htmlspecialchars($post['content']); // Sanitize against potential HTML/JS injection
-        $timeStamp = $post['timeStamp'];
-
-        echo '<p>';
-            echo "<a href = 'userPage.php?user=".$username."'>".$username.'</a><br>';
-            echo $content.'<br>';
-            echo 'Posted '.$timeStamp;
-        echo '</p>';
+        printPost($post);
     }
 }
 

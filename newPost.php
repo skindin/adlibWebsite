@@ -18,7 +18,7 @@
         mysqli_stmt_bind_param($stmt, "iss", $user['userId'], $user['username'], $content);
 
         // Combine input into content variable
-        $content = 'She '.$input1.' my '.$input2." till I ".$input3;
+        $content = 'She '.$input1.' my '.$input2." til I ".$input3;
 
         // Execute prepared statement
         mysqli_stmt_execute($stmt);
@@ -51,7 +51,7 @@
         <form action="" method = "post">
             She <input type="text" name = "input1">
             my <input type="text" name = "input2">
-            till I <input type="text" name = "input3">
+            til I <input type="text" name = "input3">
             <div>
                 <input type="submit" value = "Post" name = "post">
             </div>
