@@ -13,7 +13,7 @@
     </head>
 
     <h2>
-        She ? My ? Till I ?
+        She ? My ? Til I ?
     </h2>
 
     <form action="newPost.php">
