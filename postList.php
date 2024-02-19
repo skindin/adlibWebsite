@@ -42,8 +42,8 @@ function getPosts($sortType, $sortOrder, $userId = -1)
 
 function printPost($post)
 {
-    $username = htmlspecialchars($post['username']); // Sanitize against potential HTML/JS injection
-    $content = htmlspecialchars($post['content']); // Sanitize against potential HTML/JS injection
+    $username = $post['username']; // Sanitize against potential HTML/JS injection
+    $content = $post['content']; // Sanitize against potential HTML/JS injection
     $timeStamp = $post['timeStamp'];
 
     echo '<p>';
