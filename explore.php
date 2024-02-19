@@ -2,7 +2,7 @@
     include('database_check.php');
     include('passwordCheck.php'); login();
     include('postList.php');
-    include('logout.php');
+    include('logout.php');//dora dora dora dora dora
 ?>
 
 <!DOCTYPE html>
