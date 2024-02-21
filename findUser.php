@@ -4,7 +4,7 @@
     include('logout.php');
 
 
-    function getUsers ($query)
+    function getUsers($query)
     {
         global $conn;
 
@@ -12,18 +12,18 @@
         $stmt = mysqli_prepare($conn, $sql);
 
         // Bind the string parameter
-        mysqli_stmt_bind_param($stmt, "s", '%'.$query.'%');
+        $search_query = '%' . $query . '%';
+        mysqli_stmt_bind_param($stmt, "s", $search_query);
 
-        mysqli_execute($stmt);
+        mysqli_stmt_execute($stmt);
 
         $result = mysqli_stmt_get_result($stmt);
 
         // Fetch all rows into an associative array
         $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-        // Close the statement and connection
+        // Close the statement
         mysqli_stmt_close($stmt);
-        mysqli_close($conn);
 
         return $users;
     }
