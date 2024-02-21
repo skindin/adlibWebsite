@@ -1,45 +1,57 @@
 <?php
-    include('database_check.php');
-    include('passwordCheck.php'); login();
-    include('postList.php');
-    include('logout.php');
+require __DIR__ . '/vendor/autoload.php'; // Include Composer's autoloader
 
-    $userId = -1;
-    $username = '';
+use Ratchet\MessageComponentInterface;
+use Ratchet\ConnectionInterface;
+use Ratchet\Server\IoServer;
+use Ratchet\Http\HttpServer;
+use Ratchet\WebSocket\WsServer;
 
-    if (isset($_GET['user']))
-    {
-        $username = $_GET['user'];
+class WebSocketServer implements MessageComponentInterface {
+    protected $clients;
 
-        $user = getUser($username);
-        if (!$user)
-        {
-            echo '<h1>User '.$username.' does not exist!</h1>';
-            exit();
-        }
-        else
-        {
-            $userId = $user['userId'];
+    public function __construct() {
+        $this->clients = new \SplObjectStorage;
+    }
+
+    public function onOpen(ConnectionInterface $conn) {
+        // Store the new connection to send messages to later
+        $this->clients->attach($conn);
+        echo "New connection! ({$conn->resourceId})\n";
+    }
+
+    public function onMessage(ConnectionInterface $from, $msg) {
+        // Broadcast the received message to all clients
+        foreach ($this->clients as $client) {
+            if ($from !== $client) {
+                $client->send($msg);
+            }
         }
     }
 
-    $pageName = $username."'s Posts";
-?>
+    public function onClose(ConnectionInterface $conn) {
+        // Remove the connection when it closes
+        $this->clients->detach($conn);
+        echo "Connection {$conn->resourceId} has disconnected\n";
+    }
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>
-            <?php echo $pageName?>
-        </title>
-        <link rel="stylesheet" href="https://classless.de/classless.css">
-    </head>
+    public function onError(ConnectionInterface $conn, \Exception $e) {
+        // Handle errors
+        echo "An error has occurred: {$e->getMessage()}\n";
+        $conn->close();
+    }
+}
 
-    <h2>
-        <?php echo $pageName?>
-    </h2>
+// Run the WebSocket server
+$server = IoServer::factory(
+    new HttpServer(
+        new WsServer(
+            new WebSocketServer()
+        )
+    ),
+    8080 // Port number
+);
 
-    <?php
-        printRecent($userId);
-    ?>
-</html>
+echo "WebSocket server started on port 8080\n";
+
+$server->run();

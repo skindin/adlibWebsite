@@ -1,80 +1,84 @@
 <?php
-// I assume that $conn is a valid mysqli connection object, and it's included in the global scope.
+    include('database_check.php');
+    include('passwordCheck.php'); login();
+    include('logout.php');
 
-$showCount = 20;
 
-function getPosts($sortType, $sortOrder, $userId = -1)
-{
-    global $showCount, $conn;
-
-    $where = '';
-    if ($userId >= 0) {
-        $where = "WHERE userId = ?";
-    }
-
-    $sql = "SELECT * FROM posts ".$where." ORDER BY ".$sortType." ".$sortOrder;//." LIMIT ".$showCount;
-
-    if ($userId >= 0)
+    function getUsers ($query)
     {
+
+        $sql = "SELECT * FROM users WHERE username LIKE '%?%' ORDER BY username ASC";
         $stmt = mysqli_prepare($conn, $sql);
 
         // Bind the string parameter
-        mysqli_stmt_bind_param($stmt, "s", $userId);
+        mysqli_stmt_bind_param($stmt, "s", $query);
 
         mysqli_execute($stmt);
 
         $result = mysqli_stmt_get_result($stmt);
 
         // Fetch all rows into an associative array
-        $posts = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
         // Close the statement and connection
         mysqli_stmt_close($stmt);
         mysqli_close($conn);
 
-        return $posts;
+        return $users;
     }
-    else
+
+    function printUsers ($users)
     {
-        return mysqli_query($conn,$sql);
+        foreach ($users as $user)
+        {
+            $username = $user['username'];
+            $postCount = $user['postCount'];
+            $timeStamp = $user['timeStamp'];
+
+            echo '<p id = post'.$id.'>';
+                echo "<a href = 'userPage.php?user=".$username."'>".$username.'</a><br>';
+                $suffix = ' Posts';
+                if ($postCount == 1) $suffix = ' Post';
+                echo $postCount.$suffix;
+                echo '<br>Created '.$timeStamp;
+            echo '</p>';
+        }
     }
-}
-
-function printPost($post)
-{
-    $username = $post['username'];
-    $content = $post['content'];
-    $goodness = $post['goodness'];
-    $id = $post['postId'];
-    $timeStamp = $post['timeStamp'];
-
-    echo '<p id = post'.$id.'>';
-        echo "<a href = 'userPage.php?user=".$username."'>".$username.'</a><br>';
-        echo $content.'<br>';
-        echo '<button>Good</button>';
-        echo $goodness;
-        echo  '<button>Bad</button>';
-        echo '<br>Posted '.$timeStamp;
-    echo '</p>';
-}
-
-function printPosts($posts)
-{
-    foreach ($posts as $post)
-    {
-        printPost($post);
-    }
-}
-
-function printRecent($userId = -1)
-{
-    $posts = getPosts('postId', 'DESC', $userId);
-    printPosts($posts);
-}
-
-function printPopular($userId = -1)
-{
-    $posts = getPosts('goodness', 'DESC', $userId);
-    printPosts($posts);
-}
 ?>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Find User</title>
+        <link rel="stylesheet" href="https://classless.de/classless.css">
+    </head>
+
+    <body>
+        <h2>
+            Find User
+        </h2>
+
+        <form method = 'post'>
+            <input type="text" name ='query'>
+            <input type="submit" value = "Find User">
+        </form>
+
+        <?php
+            if (isset($_POST['query']))
+            {
+                $query = $_POST['query'];
+
+                $users = getUsers($query);
+
+                if ($mysqli_num_rows > 0)
+                {
+                    printUsers($users);
+                }
+                else
+                {
+                    echo 'No users found...';
+                }
+            }
+        ?>
+    </body>
+</html>

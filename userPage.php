@@ -6,6 +6,8 @@
 
     $userId = -1;
     $username = '';
+    $timeStamp = '';
+    $postCount = 0;
 
     if (isset($_GET['user']))
     {
@@ -20,6 +22,8 @@
         else
         {
             $userId = $user['userId'];
+            $timeStamp = $user['timeStamp'];
+            $postCount = $user['postCount'];
         }
     }
 
@@ -38,6 +42,18 @@
     <h2>
         <?php echo $pageName?>
     </h2>
+
+    <div>
+        <?php
+            $suffix = ' Posts';
+            if ($postCount == 1) $suffix = ' Post';
+            echo $postCount.$suffix;
+        ?>
+    </div>
+
+    <div>
+        <?php echo 'Created '.$timeStamp ?>
+    </div>
 
     <?php
         printRecent($userId);
