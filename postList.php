@@ -44,13 +44,16 @@ function printPost($post)
 {
     $username = $post['username'];
     $content = $post['content'];
+    $goodness = $post['goodness'];
     $id = $post['postId'];
     $timeStamp = $post['timeStamp'];
 
     echo '<p id = post'.$id.'>';
         echo "<a href = 'userPage.php?user=".$username."'>".$username.'</a><br>';
         echo $content.'<br>';
-        echo '<button>Good</button> <button>Bad</button>';
+        echo '<button>Good</button>';
+        echo $goodness;
+        echo  '<button>Bad</button>';
         echo '<br>Posted '.$timeStamp;
     echo '</p>';
 }
