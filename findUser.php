@@ -11,21 +11,32 @@
         $sql = "SELECT * FROM users WHERE username LIKE ? ORDER BY username ASC";
         $stmt = mysqli_prepare($conn, $sql);
 
-        // Bind the string parameter
-        $search_query = '%' . $query . '%';
-        mysqli_stmt_bind_param($stmt, "s", $search_query);
+        // Check if the statement preparation succeeded
+        if ($stmt) {
+            // Bind the string parameter
+            $search_query = '%' . $query . '%';
+            mysqli_stmt_bind_param($stmt, "s", $search_query);
 
-        mysqli_stmt_execute($stmt);
+            // Execute the statement
+            mysqli_stmt_execute($stmt);
 
-        $result = mysqli_stmt_get_result($stmt);
+            // Get the result set
+            $result = mysqli_stmt_get_result($stmt);
 
-        // Fetch all rows into an associative array
-        $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
+            // Fetch all rows into an associative array
+            $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-        // Close the statement
-        mysqli_stmt_close($stmt);
+            // Close the result set
+            mysqli_free_result($result);
 
-        return $users;
+            // Close the statement
+            mysqli_stmt_close($stmt);
+
+            return $users;
+        } else {
+            // Return false or handle the error as needed
+            return false;
+        }
     }
 
     function printUsers ($users)
