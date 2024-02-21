@@ -4,39 +4,47 @@
     include('logout.php');
 
 
-    function getUsers($query)
+    function getUsers($query == '')
     {
         global $conn;
 
-        $sql = "SELECT * FROM users WHERE username LIKE ? ORDER BY username ASC";
-        $stmt = mysqli_prepare($conn, $sql);
+        if ($query != '')
+        {
+            $sql = "SELECT * FROM users WHERE username LIKE ? ORDER BY username ASC";
+            $stmt = mysqli_prepare($conn, $sql);
 
-        // Check if the statement preparation succeeded
-        if ($stmt) {
-            // Bind the string parameter
-            $search_query = '%' . $query . '%';
-            mysqli_stmt_bind_param($stmt, "s", $search_query);
+            // Check if the statement preparation succeeded
+            if ($stmt) {
+                // Bind the string parameter
+                $search_query = '%' . $query . '%';
+                mysqli_stmt_bind_param($stmt, "s", $search_query);
 
-            // Execute the statement
-            mysqli_stmt_execute($stmt);
+                // Execute the statement
+                mysqli_stmt_execute($stmt);
 
-            // Get the result set
-            $result = mysqli_stmt_get_result($stmt);
+                // Get the result set
+                $result = mysqli_stmt_get_result($stmt);
 
-            // Fetch all rows into an associative array
-            $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
+                // Fetch all rows into an associative array
+                $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-            // Close the result set
-            mysqli_free_result($result);
+                // Close the result set
+                mysqli_free_result($result);
 
-            // Close the statement
-            mysqli_stmt_close($stmt);
+                // Close the statement
+                mysqli_stmt_close($stmt);
 
-            return $users;
-        } else {
-            // Return false or handle the error as needed
-            return false;
+                return $users;
+            } else {
+                // Return false or handle the error as needed
+                return false;
+            }
         }
+        else{
+            $sql = "SELECT * FROM users ORDER BY username ASC"
+            return mysqli_query($conn,$sql);
+        }
+        return false;
     }
 
     function printUsers ($users)
