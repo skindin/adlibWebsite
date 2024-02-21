@@ -21,6 +21,11 @@
             <input type="submit" value = "New Post">
         </form>
 
+        <div>
+            <a href="findUser.php">Find User</a>
+        </div>
+
+
         <?php
             printRecent();
         ?>
