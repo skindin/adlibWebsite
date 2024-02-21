@@ -4,7 +4,7 @@
     include('logout.php');
 
 
-    function getUsers($query == '')
+    function getUsers($query = '')
     {
         global $conn;
 
