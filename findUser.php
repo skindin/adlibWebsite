@@ -56,6 +56,20 @@
             echo '</p>';
         }
     }
+
+    function searchUsers ($query)
+    {
+        $users = getUsers($query);
+
+        if (!empty($users))
+        {
+            printUsers($users);
+        }
+        else
+        {
+            echo 'No users found...';
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -80,16 +94,11 @@
             {
                 $query = $_POST['query'];
 
-                $users = getUsers($query);
-
-                if (!empty($users))
-                {
-                    printUsers($users);
-                }
-                else
-                {
-                    echo 'No users found...';
-                }
+                searchUsers($query);
+            }
+            else
+            {
+                searchUsers('');
             }
         ?>
     </body>
