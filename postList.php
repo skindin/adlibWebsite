@@ -50,7 +50,7 @@ function printPost($post)
     echo '<p id = post'.$id.'>';
         echo "<a href = 'userPage.php?user=".$username."'>".$username.'</a><br>';
         echo $content.'<br>';
-        echo '<button>Good</button> <button>Bad</button>'
+        echo '<button>Good</button> <button>Bad</button>';
         echo '<br>Posted '.$timeStamp;
     echo '</p>';
 }
