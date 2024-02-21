@@ -47,7 +47,7 @@
             $postCount = $user['postCount'];
             $timeStamp = $user['timeStamp'];
 
-            echo '<p id = post'.$id.'>';
+            echo '<p>';
                 echo "<a href = 'userPage.php?user=".$username."'>".$username.'</a><br>';
                 $suffix = ' Posts';
                 if ($postCount == 1) $suffix = ' Post';
@@ -82,7 +82,7 @@
 
                 $users = getUsers($query);
 
-                if (mysqli_num_rows($users) > 0)
+                if (!empty($users))
                 {
                     printUsers($users);
                 }
