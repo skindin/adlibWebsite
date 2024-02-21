@@ -42,14 +42,16 @@ function getPosts($sortType, $sortOrder, $userId = -1)
 
 function printPost($post)
 {
-    $username = $post['username']; // Sanitize against potential HTML/JS injection
-    $content = $post['content']; // Sanitize against potential HTML/JS injection
+    $username = $post['username'];
+    $content = $post['content'];
+    $id = $post['postId'];
     $timeStamp = $post['timeStamp'];
 
-    echo '<p>';
+    echo '<p id = post'.$id.'>';
         echo "<a href = 'userPage.php?user=".$username."'>".$username.'</a><br>';
         echo $content.'<br>';
-        echo 'Posted '.$timeStamp;
+        echo '<button>Good</button> <button>Bad</button>'
+        echo '<br>Posted '.$timeStamp;
     echo '</p>';
 }
 
