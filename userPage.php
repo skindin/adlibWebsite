@@ -27,7 +27,7 @@
         }
     }
 
-    $pageName = $username."'s Posts";
+    $pageName = $username;
 ?>
 
 <!DOCTYPE html>
