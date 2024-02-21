@@ -71,7 +71,7 @@
 
                 $users = getUsers($query);
 
-                if ($mysqli_num_rows > 0)
+                if (mysqli_num_rows($users) > 0)
                 {
                     printUsers($users);
                 }
