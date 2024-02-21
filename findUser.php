@@ -8,11 +8,11 @@
     {
         global $conn;
 
-        $sql = "SELECT * FROM users WHERE username LIKE '%?%' ORDER BY username ASC";
+        $sql = "SELECT * FROM users WHERE username LIKE ? ORDER BY username ASC";
         $stmt = mysqli_prepare($conn, $sql);
 
         // Bind the string parameter
-        mysqli_stmt_bind_param($stmt, "s", $query);
+        mysqli_stmt_bind_param($stmt, "s", '%'.$query.'%');
 
         mysqli_execute($stmt);
 
@@ -61,7 +61,7 @@
 
         <form method = 'post'>
             <input type="text" name ='query'>
-            <input type="submit" value = "Find User">
+            <input type="submit" value = "Search">
         </form>
 
         <?php
