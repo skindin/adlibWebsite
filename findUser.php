@@ -6,6 +6,7 @@
 
     function getUsers ($query)
     {
+        global $conn;
 
         $sql = "SELECT * FROM users WHERE username LIKE '%?%' ORDER BY username ASC";
         $stmt = mysqli_prepare($conn, $sql);
