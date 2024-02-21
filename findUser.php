@@ -41,7 +41,7 @@
             }
         }
         else{
-            $sql = "SELECT * FROM users ORDER BY username ASC"
+            $sql = "SELECT * FROM users ORDER BY username ASC";
             return mysqli_query($conn,$sql);
         }
         return false;
