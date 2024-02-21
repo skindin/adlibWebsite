@@ -93,7 +93,7 @@
         </h2>
 
         <form method = 'post'>
-            <input type="text" name ='query'>
+            <input type="text" name ='query' placeholder = 'Username'>
             <input type="submit" value = "Search">
         </form>
 
