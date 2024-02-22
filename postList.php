@@ -52,9 +52,9 @@ function printPost($post)
     echo '<p id = post'.$id.'>';
         echo "<a href = 'userPage.php?user=".$username."'>".$username.'</a><br>';
         echo $content.'<br>';
-        echo '<button onclick="sendVote('.$id.','.1.')">Good</button>';
+        echo '<button onclick="sendVote('.$id.', 1)">Good</button>';
         echo $goodness;
-        echo '<button onclick="sendVote('.$id.','.-1.')">Bad</button>';
+        echo '<button onclick="sendVote('.$id.', -1)">Bad</button>';
         echo '<br>Posted '.$timeStamp;
     echo '</p>';
 }
