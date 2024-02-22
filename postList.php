@@ -86,7 +86,7 @@ function printPopular($userId = -1)
         var xhr = new XMLHttpRequest();
 
         // Configure the request
-        xhr.open('POST', 'run_function.php', true);
+        xhr.open('POST', 'vote.php', true);
 
         // Set the Content-Type header if you're sending data in the request body
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -106,5 +106,7 @@ function printPopular($userId = -1)
         // Optionally, you can send data in the request body
         var postData = 'postId=' + postId + '&voteValue=' + voteValue;
         xhr.send(postData);
+
+        console.log('function ran: ' + 'postId = ' + postId + ' and vote value = ' + voteValue);
     }
 </script>
