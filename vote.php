@@ -11,6 +11,8 @@
         mysqli_stmt_execute($stmt);
         mysqli_stmt_store_result($stmt);
 
+        //probably will have to make some changes in the case that a vote is recorded with a voteValue of 0
+
         if (mysqli_stmt_num_rows($stmt) > 0) {
             echo 'This user already liked this post';
         } else {
@@ -28,5 +30,13 @@
         }
 
         return false;
+    }
+
+    if (isset($_POST['postId']) && isset($_POST['voteValue']))
+    {
+        $postId = $_POST['postId'];
+        $voteValue = $_POST['voteValue'];
+
+        vote($postId, $voteValue);
     }
 ?>
