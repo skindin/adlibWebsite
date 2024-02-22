@@ -82,7 +82,7 @@ function printPopular($userId = -1)
 
 <script>
     // Establish WebSocket connection
-    var ws = new WebSocket('wss://sheblankmyblanktilliblank.com/gitRepo:8080');
+    var ws = new WebSocket('wss://sheblankmyblanktilliblank.com');
 
     // Event handler for WebSocket connection establishment
     ws.onopen = function(event)
