@@ -37,6 +37,15 @@
         $userId = $_POST['userId'];
         $voteValue = $_POST['voteValue'];
 
-        vote($postId, $userId, $voteValue);
+        $success = vote($postId, $userId, $voteValue);
+
+        if ($success )
+        {
+            echo json_encode(array("success" => true, "message" => "Vote sent successfully"));
+        }
+        else
+        {
+            echo json_encode(array("success" => false, "message" => "Failed to send vote"));
+        }
     }
 ?>
