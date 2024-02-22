@@ -1,5 +1,6 @@
 <?php
 // I assume that $conn is a valid mysqli connection object, and it's included in the global scope.
+include('vote.php');
 
 $showCount = 20;
 
@@ -51,9 +52,9 @@ function printPost($post)
     echo '<p id = post'.$id.'>';
         echo "<a href = 'userPage.php?user=".$username."'>".$username.'</a><br>';
         echo $content.'<br>';
-        echo '<button>Good</button>';
+        echo '<button onclick="sendVote('.$id.','.1.')">Good</button>';
         echo $goodness;
-        echo  '<button>Bad</button>';
+        echo '<button onclick="sendVote('.$id.','.-1.')">Bad</button>';
         echo '<br>Posted '.$timeStamp;
     echo '</p>';
 }
@@ -78,3 +79,32 @@ function printPopular($userId = -1)
     printPosts($posts);
 }
 ?>
+
+<script>
+    function sendVote (postId, voteValue)
+    {
+        var xhr = new XMLHttpRequest();
+
+        // Configure the request
+        xhr.open('POST', 'run_function.php', true);
+
+        // Set the Content-Type header if you're sending data in the request body
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+        // Set up a callback function to handle the response
+        xhr.onload = function() {
+            if (xhr.status >= 200 && xhr.status < 300) {
+                // Request was successful
+                console.log('PHP function executed successfully');
+                console.log('Response:', xhr.responseText);
+            } else {
+                // Request failed
+                console.error('Failed to execute PHP function:', xhr.status, xhr.statusText);
+            }
+        };
+
+        // Optionally, you can send data in the request body
+        var postData = 'postId=' + postId + '&voteValue=' + voteValue;
+        xhr.send(postData);
+    }
+</script>
