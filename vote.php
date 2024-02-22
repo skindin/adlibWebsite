@@ -1,4 +1,6 @@
 <?php
+    session_start();
+
     function vote($postId, $voteValue)
     {
         global $conn;
