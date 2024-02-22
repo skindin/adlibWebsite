@@ -1,10 +1,9 @@
 <?php
     session_start();
 
-    function vote($postId, $voteValue)
+    function vote($postId, $userId, $voteValue)
     {
         global $conn;
-        $userId = $_SESSION['user']['userId'];
 
         // Check if the user has already voted for this post
         $sql = "SELECT * FROM goodVotes WHERE postId = ? AND userId = ?";

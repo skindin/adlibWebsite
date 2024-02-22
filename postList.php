@@ -46,15 +46,16 @@ function printPost($post)
     $username = $post['username'];
     $content = $post['content'];
     $goodness = $post['goodness'];
-    $id = $post['postId'];
+    $postId = $post['postId'];
     $timeStamp = $post['timeStamp'];
+    $viewerId = $_SESSION['user']['userId'];
 
-    echo '<p id = post'.$id.'>';
+    echo '<p id = post'.$postId.'>';
         echo "<a href = 'userPage.php?user=".$username."'>".$username.'</a><br>';
         echo $content.'<br>';
-        echo '<button onclick="sendVote('.$id.', 1)">Good</button>';
+        echo '<button onclick="sendVote('.$postId.', '.$viewerId.', 1)">Good</button>';
         echo $goodness;
-        echo '<button onclick="sendVote('.$id.', -1)">Bad</button>';
+        echo '<button onclick="sendVote('.$postId.', '.$viewerId.', -1)">Bad</button>';
         echo '<br>Posted '.$timeStamp;
     echo '</p>';
 }
