@@ -55,3 +55,4 @@ $server = IoServer::factory(
 echo "WebSocket server started on port 8080\n";
 
 $server->run();
+?>
