@@ -48,14 +48,13 @@ function printPost($post)
     $goodness = $post['goodness'];
     $postId = $post['postId'];
     $timeStamp = $post['timeStamp'];
-    $viewerId = $_SESSION['user']['userId'];
 
     echo '<p id = post'.$postId.'>';
         echo "<a href = 'userPage.php?user=".$username."'>".$username.'</a><br>';
         echo $content.'<br>';
-        echo '<button onclick="sendVote('.$postId.', '.$viewerId.', 1)">Good</button>';
+        echo '<button onclick="sendVote('.$postId.', 1)">Good</button>';
         echo $goodness;
-        echo '<button onclick="sendVote('.$postId.', '.$viewerId.', -1)">Bad</button>';
+        echo '<button onclick="sendVote('.$postId.', -1)">Bad</button>';
         echo '<br>Posted '.$timeStamp;
     echo '</p>';
 }
@@ -82,32 +81,45 @@ function printPopular($userId = -1)
 ?>
 
 <script>
-    function sendVote (postId, userId, voteValue)
+    // Establish WebSocket connection
+    var ws = new WebSocket('ws://localhost:8080');
+
+    // Event handler for WebSocket connection establishment
+    ws.onopen = function(event)
     {
-        var xhr = new XMLHttpRequest();
+        console.log('WebSocket connection established.');
+    };
 
-        // Configure the request
-        xhr.open('POST', 'vote.php', true);
+    // Event handler for receiving messages from the server
+    ws.onmessage = function(event)
+    {
+        // Process messages received from the server
+        console.log('Message received from server:', event.data);
+        // Update UI based on received message (e.g., update vote counts)
+    };
 
-        // Set the Content-Type header if you're sending data in the request body
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    // Event handler for WebSocket connection closure
+    ws.onclose = function(event)
+    {
+        console.log('WebSocket connection closed.');
+    };
 
-        // Set up a callback function to handle the response
-        xhr.onload = function() {
-            if (xhr.status >= 200 && xhr.status < 300) {
-                // Request was successful
-                console.log('PHP function executed successfully');
-                console.log('Response:', xhr.responseText);
-            } else {
-                // Request failed
-                console.error('Failed to execute PHP function:', xhr.status, xhr.statusText);
-            }
+    // Event handler for WebSocket errors
+    ws.onerror = function(event)
+    {
+        console.error('WebSocket error:', event);
+    };
+
+    // Function to send vote to server
+    function sendVote(postId, voteValue)
+    {
+        // Construct vote message
+        var voteMessage = {
+            postId: postId,
+            voteValue: voteValue
         };
 
-        // Optionally, you can send data in the request body
-        var postData = 'postId=' + postId + '&userId = ' + userId + '&voteValue=' + voteValue;
-        xhr.send(postData);
-
-        console.log('function ran: ' + 'postId = ' + postId + ' and vote value = ' + voteValue);
+        // Send vote message to server
+        ws.send(JSON.stringify(voteMessage));
     }
 </script>
