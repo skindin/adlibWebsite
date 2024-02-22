@@ -23,8 +23,11 @@
         return false;
     }
 
-    $postId = $_POST['postId'];
-    $voteValue = $_POST['voteValue'];
+    if (isset($_POST['postId']) && isset($_POST['voteValue']))
+    {
+        $postId = $_POST['postId'];
+        $voteValue = $_POST['voteValue'];
 
-    vote($postId, $voteValue);
+        vote($postId, $voteValue);
+    }
 ?>
