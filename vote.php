@@ -1,6 +1,4 @@
 <?php
-    session_start();
-
     function vote($postId, $userId, $voteValue)
     {
         global $conn;
@@ -33,11 +31,12 @@
         return false;
     }
 
-    if (isset($_POST['postId']) && isset($_POST['voteValue']))
+    if (isset($_POST['postId']) && isset($_POST['userId']) && isset($_POST['voteValue']))
     {
         $postId = $_POST['postId'];
+        $userId = $_POST['userId'];
         $voteValue = $_POST['voteValue'];
 
-        vote($postId, $voteValue);
+        vote($postId, $userId, $voteValue);
     }
 ?>

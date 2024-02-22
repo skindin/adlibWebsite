@@ -82,7 +82,7 @@ function printPopular($userId = -1)
 ?>
 
 <script>
-    function sendVote (postId, voteValue)
+    function sendVote (postId, userId, voteValue)
     {
         var xhr = new XMLHttpRequest();
 
@@ -105,7 +105,7 @@ function printPopular($userId = -1)
         };
 
         // Optionally, you can send data in the request body
-        var postData = 'postId=' + postId + '&voteValue=' + voteValue;
+        var postData = 'postId=' + postId + '&userId = ' + userId + '&voteValue=' + voteValue;
         xhr.send(postData);
 
         console.log('function ran: ' + 'postId = ' + postId + ' and vote value = ' + voteValue);
