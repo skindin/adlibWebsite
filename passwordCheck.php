@@ -110,7 +110,7 @@ function testCredentials($username, $password) {
         return false;
     }
 
-    // BRUH IT'S SENDING THE PASSWORD RIGHT HERE
+
 }
 
 function login ($redirect = true)
