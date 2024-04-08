@@ -48,11 +48,11 @@
                 mysqli_stmt_execute($stmt);
                 // $result = mysqli_stmt_store_result($stmt);
 
-                echo 'Set vote value to '.$voteValue;
+                echo 'Set vote value to '.$voteValue.' ';
             }
             else
             {
-                echo 'Vote was already set to '.$voteValue;
+                echo 'Vote was already set to '.$voteValue.' ';
                 $alreadyVoted = true;
             }
         } else {
@@ -62,7 +62,7 @@
             mysqli_stmt_bind_param($stmt, "iii", $postId, $userId, $voteValue);
 
             if (mysqli_stmt_execute($stmt)) {
-                echo 'Vote sent successfully';
+                echo 'Vote sent successfully. ';
                 return true;
             } else {
                 echo 'Error: ' . mysqli_error($conn);
@@ -75,6 +75,10 @@
             $stmt = mysqli_prepare($conn, $sql);
             mysqli_stmt_bind_param($stmt, "ii", $voteValue, $postId);
             mysqli_stmt_execute($stmt);
+            if (mysqli_stmt_get_result($stmt))
+            {
+                echo 'successfully updated votes'
+            }
         }
 
         return false;
