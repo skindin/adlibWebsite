@@ -156,11 +156,13 @@ function printPopular($userId = -1)
             var goodVote = voteValue > 0;
             var clicking = goodButton == goodVote;
 
-            if (clicking && button.classList.contains('selected'))
+            if (clicking)
             {
-                voteCoeff = 0;
+                if (button.classList.contains('selected'))
+                    voteCoeff = 0;
+
+                button.classList.toggle('selected');
             }
-            button.classList.toggle('selected');
             else if(button.classList.contains('selected'))
             {
                 button.classList.remove('selected');
