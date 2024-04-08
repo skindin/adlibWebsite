@@ -52,11 +52,11 @@ function printPost($post)
 
         echo $content.'<br>';
 
-        echo '<button onclick="sendVote('.$postId.', 1)">Good</button>';
+        echo '<button class = "voteButton" onclick="sendVote('.$postId.', 1)">Good</button>';
 
-        echo $goodness;
+        echo '<div class = > $goodness </div>';
 
-        echo '<button onclick="sendVote('.$postId.', -1)">Bad</button>';
+        echo '<button class = "voteButton" onclick="sendVote('.$postId.', -1)">Bad</button>';
 
         echo '<br>Posted '.$timeStamp;
     echo '</p>';
@@ -83,37 +83,15 @@ function printPopular($userId = -1)
 }
 ?>
 
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="customStyle.css">
+    </head>
+</html>
+
 <script>
-    // // Establish WebSocket connection
-    // var ws = new WebSocket('ws://sheblankmyblanktilliblank.com:8080');
 
-    // // Event handler for WebSocket connection establishment
-    // ws.onopen = function(event)
-    // {
-    //     console.log('WebSocket connection established.');
-    // };
-
-    // // Event handler for receiving messages from the server
-    // ws.onmessage = function(event)
-    // {
-    //     // Process messages received from the server
-    //     console.log('Message received from server:', event.data);
-    //     // Update UI based on received message (e.g., update vote counts)
-    // };
-
-    // // Event handler for WebSocket connection closure
-    // ws.onclose = function(event)
-    // {
-    //     console.log('WebSocket connection closed.');
-    // };
-
-    // // Event handler for WebSocket errors
-    // ws.onerror = function(event)
-    // {
-    //     console.error('WebSocket error:', event);
-    // };
-
-    // Function to send vote to server
     function sendVote(postId, voteValue)
     {
         // Create an XMLHttpRequest object
@@ -141,5 +119,16 @@ function printPopular($userId = -1)
 
         // Send the request with the data
         xhr.send(params);
+
+
+        var container = document.getElementById('post' + postId);
+
+        // Get all the buttons inside the container
+        var buttons = container.querySelectorAll('.voteButton');
+
+        // Add click event listener to each button
+        buttons.forEach(function(button) {
+            this.classList.toggle('active');
+        });
     }
 </script>
