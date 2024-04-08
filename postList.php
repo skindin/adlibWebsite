@@ -93,14 +93,30 @@ function printPosts($posts)
     }
 }
 
+function print ($userId = -1)
+{
+    if (isset($_GET['popular']))
+        printPopular($userId);
+    else if (isset($_GET['recent']))
+        printRecent($userId);
+}
+
 function printRecent($userId = -1)
 {
+    echo '<form method = "GET">
+    <input type="popular" value = "Order: Popular">
+    </form>'
+
     $posts = getPosts('postId', 'DESC', $userId);
     printPosts($posts);
 }
 
 function printPopular($userId = -1)
 {
+    echo '<form method = "GET">
+    <input type="recent" value = "Order: Recent">
+    </form>'
+
     $posts = getPosts('goodness', 'DESC', $userId);
     printPosts($posts);
 }

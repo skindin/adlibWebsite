@@ -13,7 +13,7 @@
         }
         else
         {
-            header("Location: newPost.php"); exit();
+            header("Location: explore.php"); exit();
         }
     }
 ?>
