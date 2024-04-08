@@ -49,7 +49,7 @@ function printPost($post)
     $postId = $post['postId'];
     $timeStamp = $post['timeStamp'];
 
-    $sql = "SELECT * FROM goodVotes WHERE postId = ? AND userId = ? LIMIT 1";
+    $sql = "SELECT * FROM goodVotes WHERE postId = ? AND userId = ?";
     $stmt = mysqli_prepare($conn, $sql);
     mysqli_stmt_bind_param($stmt, "ii", $postId, $_SESSION['user']['userId']);
     mysqli_stmt_execute($stmt);
