@@ -67,13 +67,13 @@ function printPost($post)
         echo $content.'<br>';
 
         echo '<button class = "voteButton';
-        if ($voteValue > 0) echo ' selected'
+        if ($voteValue > 0) echo ' selected';
         echo '" onclick="sendVote('.$postId.', 1)">Good</button>';
 
         echo '<span class = voteCount>'. $goodness .'</span>';
 
         echo '<button class = "voteButton';
-        if ($voteValue < 0) echo ' selected'
+        if ($voteValue < 0) echo ' selected';
         echo '" onclick="sendVote('.$postId.', -1)">Bad</button>';
 
         echo '<br>Posted '.$timeStamp;
