@@ -70,7 +70,7 @@ function printPost($post)
         if ($voteValue > 0) echo ' selected';
         echo '" onclick="sendVote('.$postId.', 1)">Good</button>';
 
-        echo '<span class = voteCount>'. $goodness .'</span>';
+        echo '<span class = "voteCount">'. $goodness .'</span>';
 
         echo '<button class = "voteButton badVote';
         if ($voteValue < 0) echo ' selected';
