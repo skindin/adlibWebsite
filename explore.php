@@ -23,7 +23,7 @@
 
 
         <?php
-            printRecent();
+            printOrder();
         ?>
     </body>
 </html>

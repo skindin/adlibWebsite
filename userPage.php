@@ -56,6 +56,6 @@
     </div>
 
     <?php
-        printRecent($userId);
+        printOrder($userId);
     ?>
 </html>
