@@ -11,12 +11,6 @@
 
         // Now you can use the data as needed
         computeVote($postId, $userId, $passHash, $voteValue);
-
-        // Respond back to the client if necessary
-        echo "Vote recorded successfully.";
-    } else {
-        // Handle the case when parameters are not set
-        echo "Error: Required parameters not set.";
     }
 
     function computeVote($postId, $userId, $passwordHash, $voteValue)
@@ -49,6 +43,10 @@
                     echo 'Error: ' . mysqli_error($conn);
                 }
             }
+        }
+        else
+        {
+            echo "Password doesn't match user Id";
         }
 
         return false;
