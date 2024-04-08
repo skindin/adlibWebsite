@@ -66,13 +66,13 @@ function printPost($post)
 
         echo $content.'<br>';
 
-        echo '<button class = "voteButton';
+        echo '<button class = "voteButton goodVote';
         if ($voteValue > 0) echo ' selected';
         echo '" onclick="sendVote('.$postId.', 1)">Good</button>';
 
         echo '<span class = voteCount>'. $goodness .'</span>';
 
-        echo '<button class = "voteButton';
+        echo '<button class = "voteButton badVote';
         if ($voteValue < 0) echo ' selected';
         echo '" onclick="sendVote('.$postId.', -1)">Bad</button>';
 
@@ -143,7 +143,6 @@ function printPopular($userId = -1)
         // Send the request with the data
         xhr.send(params);
 
-
         var container = document.getElementById('post' + postId);
 
         // Get all the buttons inside the container
@@ -151,7 +150,12 @@ function printPopular($userId = -1)
 
         // Add click event listener to each button
         buttons.forEach(function(button) {
-            button.classList.toggle('selected');
+            goodButton = button.classList.contains('.goodVote');
+            goodVote = voteValue > 0;
+            clicking = goodButton == goodVote;
+
+            if (clicking) button.classList.toggle('.selected');
+            else button.classList.remove('.selected');
         });
     }
 </script>
