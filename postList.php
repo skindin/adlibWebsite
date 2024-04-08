@@ -148,14 +148,30 @@ function printPopular($userId = -1)
         // Get all the buttons inside the container
         var buttons = container.querySelectorAll('.voteButton');
 
+        var voteCoeff = 1;
+
         // Add click event listener to each button
         buttons.forEach(function(button) {
             var goodButton = button.classList.contains('goodVote');
             var goodVote = voteValue > 0;
             var clicking = goodButton == goodVote;
 
-            if (clicking) button.classList.toggle('selected');
-            else button.classList.remove('selected');
+            if (clicking && button.classList.contains('selected'))
+            {
+                voteCoeff = 0;
+            }
+            button.classList.toggle('selected');
+            else if(button.classList.contains('selected'))
+            {
+                button.classList.remove('selected');
+                voteCoeff = 2;
+            }
         });
+
+        var voteCounter = container.querySelector('voteCounte');
+
+        var currentVotes = parseInt(voteCounter.textContent);
+
+        voteCounter.textContent = currentVotes + (voteValue * voteCoeff);
     }
 </script>
