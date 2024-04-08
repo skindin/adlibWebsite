@@ -32,13 +32,24 @@
 
             $vote = mysqli_fetch_assoc($result);
 
-            $sql = "UPDATE goodVotes SET voteValue ? WHERE voteId = ?";
-            $stmt = mysqli_prepare($conn, $sql);
-            mysqli_stmt_bind_param($stmt, "ii", $voteValue, $vote['voteId']);
-            mysqli_stmt_execute($stmt);
-            $result = mysqli_stmt_store_result($stmt);
+            echo 'Record already existed.'
 
-            echo 'Record already existed. Set vote value to '.$voteValue;
+            if ($vote['voteValue'] == $voteValue)
+            {
+                $sql = "UPDATE goodVotes SET voteValue ? WHERE voteId = ?";
+                $stmt = mysqli_prepare($conn, $sql);
+                mysqli_stmt_bind_param($stmt, "ii", $voteValue, $vote['voteId']);
+                mysqli_stmt_execute($stmt);
+                $result = mysqli_stmt_store_result($stmt);
+
+                echo 'Set vote value to '.$voteValue;
+            }
+            else
+            {
+                echo 'Vote was already set to '.$voteValue;
+            }
+
+
 
         } else {
             // Insert the vote into the database
