@@ -18,6 +18,7 @@
     function computeVote($postId, $userId, $voteValue)
     {
         global $conn;
+        $output = false;
 
         // Check if the user has already voted for this post
         $sql = "SELECT * FROM goodVotes WHERE postId = ? AND userId = ?";
@@ -70,7 +71,7 @@
 
             if (mysqli_stmt_execute($stmt)) {
                 echo 'Vote sent successfully. ';
-                return true;
+                $output = true;
             } else {
                 echo 'Error: ' . mysqli_error($conn);
             }
@@ -80,8 +81,6 @@
 
         if ($modify != 0)
         {
-            echo 'Added '.$modify.' likes to post';
-
             $sql = "UPDATE posts SET goodness = goodness + ? WHERE postId = ?";
             $stmt = mysqli_prepare($conn, $sql);
             mysqli_stmt_bind_param($stmt, "ii", $modify, $postId);
@@ -92,7 +91,10 @@
             }
         }
 
-        return false;
+        echo 'Added '.$modify.' likes to post';
+
+
+        return $output;
     }
 
     // if (isset($_POST['postId']) && isset($_POST['userId']) && isset($_POST['voteValue']))
