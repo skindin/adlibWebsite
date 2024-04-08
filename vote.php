@@ -1,5 +1,5 @@
 <?php
-    include('passwordCheck.php');
+    // include('passwordCheck.php');
 
     if (isset($_POST['postId']) && isset($_POST['voteValue'])) {
         // Retrieve the data sent from JavaScript
