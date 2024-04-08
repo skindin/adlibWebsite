@@ -40,7 +40,7 @@
 
             if ($vote['voteValue'] == $voteValue)
             {
-                $sql = "UPDATE goodVotes SET voteValue ? WHERE voteId = ?";
+                $sql = "UPDATE goodVotes SET voteValue = ? WHERE voteId = ?";
                 $stmt = mysqli_prepare($conn, $sql);
                 mysqli_stmt_bind_param($stmt, "ii", $voteValue, $vote['voteId']);
                 mysqli_stmt_execute($stmt);
