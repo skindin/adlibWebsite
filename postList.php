@@ -54,14 +54,14 @@ function printPost($post)
 
         echo '<button onclick="sendVote('.$postId.', 1,';
         echo $_SESSION['user']['userId'].', ';
-        echo $_SESSION['user']['password'];
+        echo "'".$_SESSION['user']['password']."'";
         echo ')">Good</button>';
 
         echo $goodness;
 
         echo '<button onclick="sendVote('.$postId.', -1,';
         echo $_SESSION['user']['userId'].', ';
-        echo $_SESSION['user']['password'];
+        echo "'".$_SESSION['user']['password']."'";
         echo ')">Bad</button>';
 
         echo '<br>Posted '.$timeStamp;
