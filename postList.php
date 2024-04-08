@@ -150,12 +150,12 @@ function printPopular($userId = -1)
 
         // Add click event listener to each button
         buttons.forEach(function(button) {
-            var goodButton = button.classList.contains('.goodVote');
+            var goodButton = button.classList.contains('goodVote');
             var goodVote = voteValue > 0;
             var clicking = goodButton == goodVote;
 
-            if (clicking) button.classList.toggle('.selected');
-            else button.classList.remove('.selected');
+            if (clicking) button.classList.toggle('selected');
+            else button.classList.remove('selected');
         });
     }
 </script>
