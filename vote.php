@@ -77,7 +77,7 @@
             mysqli_stmt_execute($stmt);
             if (mysqli_stmt_get_result($stmt))
             {
-                echo 'successfully updated votes'
+                echo 'successfully updated votes';
             }
         }
 
