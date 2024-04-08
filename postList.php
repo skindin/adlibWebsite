@@ -111,7 +111,7 @@ function printPopular($userId = -1)
     // };
 
     // Function to send vote to server
-    function sendVote(postId, voteValue)
+    function sendVote(postId, voteValue, userId, passHash)
     {
         // Create an XMLHttpRequest object
         var xhr = new XMLHttpRequest();
@@ -120,7 +120,7 @@ function printPopular($userId = -1)
         var url = "vote.php";
 
         // Specify the data you want to send to the PHP file
-        var params = "postId=" + postId + "&voteValue=" + voteValue;
+        var params = "postId=" + postId + "&voteValue=" + voteValue + "&userId=" + userId + "&passHash=" + password_hash;
 
         // Open a connection to the server
         xhr.open("POST", url, true);

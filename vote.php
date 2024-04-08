@@ -1,13 +1,13 @@
 <?php
-    session_start();
-
     if (isset($_POST['postId']) && isset($_POST['voteValue'])) {
         // Retrieve the data sent from JavaScript
         $postId = $_POST['postId'];
         $voteValue = $_POST['voteValue'];
+        $userId = $_POST['userId'];
+        $passHash = $_POST['passHash'];
 
         // Now you can use the data as needed
-        computeVote($postId, $_SESSION['user']['userId'], $_SESSION['user']['password'], $voteValue);
+        computeVote($postId, $userId, $passHash, $voteValue);
 
         // Respond back to the client if necessary
         echo "Vote recorded successfully.";
