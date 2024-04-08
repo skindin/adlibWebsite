@@ -27,10 +27,10 @@
         $result = mysqli_stmt_get_result($stmt);
         //probably will have to make some changes in the case that a vote is recorded with a voteValue of 0
 
-        foreach ($result as $vote)
-        {
-            echo $vote['voteId'].' ';
-        }
+        // foreach ($result as $vote)
+        // {
+        //     echo $vote['voteId'].' ';
+        // }
 
         if (mysqli_num_rows($result) > 0) {
 
