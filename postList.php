@@ -54,7 +54,7 @@ function printPost($post)
 
         echo '<button class = "voteButton" onclick="sendVote('.$postId.', 1)">Good</button>';
 
-        echo '<div class = > $goodness </div>';
+        echo '<span class = voteCount> $goodness </span>';
 
         echo '<button class = "voteButton" onclick="sendVote('.$postId.', -1)">Bad</button>';
 
