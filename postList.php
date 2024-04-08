@@ -151,7 +151,7 @@ function printPopular($userId = -1)
 
         // Add click event listener to each button
         buttons.forEach(function(button) {
-            this.classList.toggle('active');
+            this.classList.toggle('selected');
         });
     }
 </script>
