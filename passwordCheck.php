@@ -34,7 +34,7 @@ function getUser ($username)
 
 function getUserFromId ($userId)
 {
-        global $conn;
+    global $conn;
 
     $sql = "SELECT * FROM users WHERE userId = ? LIMIT 1";
     $stmt = mysqli_prepare($conn, $sql);
@@ -44,7 +44,7 @@ function getUserFromId ($userId)
     }
 
     // Bind parameters
-    mysqli_stmt_bind_param($stmt, "i", $username);
+    mysqli_stmt_bind_param($stmt, "i", $userId);
 
     // Execute statement
     if (!mysqli_stmt_execute($stmt)) {
