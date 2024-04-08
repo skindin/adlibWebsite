@@ -52,17 +52,11 @@ function printPost($post)
 
         echo $content.'<br>';
 
-        echo '<button onclick="sendVote('.$postId.', 1,';
-        echo $_SESSION['user']['userId'].', ';
-        echo "'".$_SESSION['user']['password']."'";
-        echo ')">Good</button>';
+        echo '<button onclick="sendVote('.$postId.', 1)">Good</button>';
 
         echo $goodness;
 
-        echo '<button onclick="sendVote('.$postId.', -1,';
-        echo $_SESSION['user']['userId'].', ';
-        echo "'".$_SESSION['user']['password']."'";
-        echo ')">Bad</button>';
+        echo '<button onclick="sendVote('.$postId.', -1)">Bad</button>';
 
         echo '<br>Posted '.$timeStamp;
     echo '</p>';
@@ -120,7 +114,7 @@ function printPopular($userId = -1)
     // };
 
     // Function to send vote to server
-    function sendVote(postId, voteValue, userId, passHash)
+    function sendVote(postId, voteValue)
     {
         // Create an XMLHttpRequest object
         var xhr = new XMLHttpRequest();
@@ -129,7 +123,7 @@ function printPopular($userId = -1)
         var url = "vote.php";
 
         // Specify the data you want to send to the PHP file
-        var params = "postId=" + postId + "&voteValue=" + voteValue + "&userId=" + userId + "&passHash=" + passHash;
+        var params = "postId=" + postId + "&voteValue=" + voteValue;
 
         // Open a connection to the server
         xhr.open("POST", url, true);

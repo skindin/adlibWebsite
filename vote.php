@@ -6,18 +6,18 @@
         // Retrieve the data sent from JavaScript
         $postId = $_POST['postId'];
         $voteValue = $_POST['voteValue'];
-        $userId = $_POST['userId'];
-        $passHash = $_POST['passHash'];
+        $userId = $_SESSION['user']['userId'];
+        $password = $_SESSION['user']['password'];
 
         // Now you can use the data as needed
-        computeVote($postId, $userId, $passHash, $voteValue);
+        computeVote($postId, $userId, $password, $voteValue);
     }
 
-    function computeVote($postId, $userId, $passwordHash, $voteValue)
+    function computeVote($postId, $userId, $password, $voteValue)
     {
         global $conn;
 
-        if (testPassWithId($userId, $passwordHash))
+        if (testPassWithId($userId, $password))
         {
             // Check if the user has already voted for this post
             $sql = "SELECT * FROM goodVotes WHERE postId = ? AND userId = ?";
