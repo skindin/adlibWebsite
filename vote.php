@@ -58,7 +58,7 @@
                 mysqli_stmt_bind_param($stmt, "i", $vote['voteId']);
                 mysqli_stmt_execute($stmt);
 
-                echo 'Vote was already set to '.$voteValue.' Vote removed. ';
+                echo 'Vote was already set to '.$voteValue.'. Vote removed. ';
 
                 $modify = -$voteValue;
             }
@@ -80,6 +80,8 @@
 
         if ($modify != 0)
         {
+            echo 'Added '.$modify.' likes to post';
+
             $sql = "UPDATE posts SET goodness = goodness + ? WHERE postId = ?";
             $stmt = mysqli_prepare($conn, $sql);
             mysqli_stmt_bind_param($stmt, "ii", $modify, $postId);
