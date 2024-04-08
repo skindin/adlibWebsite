@@ -80,7 +80,7 @@ function printPopular($userId = -1)
 }
 ?>
 
-<script>
+<!-- <script>
     // Establish WebSocket connection
     var ws = new WebSocket('ws://sheblankmyblanktilliblank.com:8080');
 
@@ -122,4 +122,4 @@ function printPopular($userId = -1)
         // Send vote message to server
         ws.send(JSON.stringify(voteMessage));
     }
-</script>
+</script> -->
