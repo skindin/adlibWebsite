@@ -29,7 +29,7 @@ function getPosts($sortType, $sortOrder, $userId = -1)
 
         // Close the statement and connection
         mysqli_stmt_close($stmt);
-        mysqli_close($conn);
+        // mysqli_close($conn);
 
         return $posts;
     }
@@ -49,7 +49,7 @@ function printPost($post)
     $postId = $post['postId'];
     $timeStamp = $post['timeStamp'];
 
-    $sql = "SELECT * FROM goodVotes WHERE postId = ? AND userId = ?";
+    $sql = "SELECT * FROM goodVotes WHERE postId = ? AND userId = ? LIMIT 1";
     $stmt = mysqli_prepare($conn, $sql);
     mysqli_stmt_bind_param($stmt, "ii", $postId, $_SESSION['user']['userId']);
     mysqli_stmt_execute($stmt);
