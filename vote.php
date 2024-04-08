@@ -46,7 +46,7 @@
         }
         else
         {
-            echo "Password doesn't match user Id";
+            echo 'no user with id '.$userId;
         }
 
         return false;
