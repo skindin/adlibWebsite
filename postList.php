@@ -159,7 +159,7 @@ function printPopular($userId = -1)
             if (clicking)
             {
                 if (button.classList.contains('selected'))
-                    voteCoeff = 0;
+                    voteCoeff = -1;
 
                 button.classList.toggle('selected');
             }
