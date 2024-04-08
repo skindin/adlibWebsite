@@ -32,7 +32,7 @@
 
             $vote = mysqli_fetch_assoc($result);
 
-            echo 'Record already existed.'
+            echo 'Record already existed.';
 
             if ($vote['voteValue'] == $voteValue)
             {
