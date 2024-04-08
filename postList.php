@@ -97,7 +97,7 @@ function printOrder ($userId = -1)
 {
     if (isset($_GET['popular']))
         printPopular($userId);
-    else if (isset($_GET['recent']))
+    else
         printRecent($userId);
 }
 
