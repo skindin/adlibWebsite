@@ -32,7 +32,7 @@
         //     echo $vote['voteId'].' ';
         // }
 
-        $alreadyVoted = false;
+        $modify = 0;
 
         if (mysqli_num_rows($result) > 0) {
 
@@ -48,12 +48,13 @@
                 mysqli_stmt_execute($stmt);
                 // $result = mysqli_stmt_store_result($stmt);
 
-                echo 'Set vote value to '.$voteValue.' ';
+                echo 'Set vote value to '.$voteValue.' ';\
+                $modify = $voteValue * 2;
             }
             else
             {
-                echo 'Vote was already set to '.$voteValue.' ';
-                $alreadyVoted = true;
+                echo 'Vote was already set to '.$voteValue.' Resetting. ';
+                $modify = -$voteValue * 2;
             }
         } else {
             // Insert the vote into the database
@@ -67,13 +68,15 @@
             } else {
                 echo 'Error: ' . mysqli_error($conn);
             }
+
+            $modify = $voteValue;
         }
 
-        if (!$alreadyVoted)
+        if ($modify != 0)
         {
             $sql = "UPDATE posts SET goodness = goodness + ? WHERE postId = ?";
             $stmt = mysqli_prepare($conn, $sql);
-            mysqli_stmt_bind_param($stmt, "ii", $voteValue, $postId);
+            mysqli_stmt_bind_param($stmt, "ii", $modify, $postId);
             mysqli_stmt_execute($stmt);
             if (mysqli_stmt_get_result($stmt))
             {
