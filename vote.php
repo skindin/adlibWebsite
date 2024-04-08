@@ -6,47 +6,42 @@
         // Retrieve the data sent from JavaScript
         $postId = $_POST['postId'];
         $voteValue = $_POST['voteValue'];
-        $userId = $_SESSION['user']['userId'];
-        $password = $_SESSION['user']['password'];
 
-        // Now you can use the data as needed
-        computeVote($postId, $userId, $password, $voteValue);
+        if (isset($_SESSION['user']))
+        {
+            $userId = $_SESSION['user']['userId'];
+
+            computeVote($postId, $userId, $voteValue);
+        }
     }
 
-    function computeVote($postId, $userId, $password, $voteValue)
+    function computeVote($postId, $userId, $voteValue)
     {
         global $conn;
 
-        if (testPassWithId($userId, $password))
-        {
-            // Check if the user has already voted for this post
-            $sql = "SELECT * FROM goodVotes WHERE postId = ? AND userId = ?";
+        // Check if the user has already voted for this post
+        $sql = "SELECT * FROM goodVotes WHERE postId = ? AND userId = ?";
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, "ii", $postId, $userId);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_store_result($stmt);
+
+        //probably will have to make some changes in the case that a vote is recorded with a voteValue of 0
+
+        if (mysqli_stmt_num_rows($stmt) > 0) {
+            echo 'This user already liked this post';
+        } else {
+            // Insert the vote into the database
+            $sql = "INSERT INTO goodVotes (postId, userId, voteValue) VALUES (?, ?, ?)";
             $stmt = mysqli_prepare($conn, $sql);
-            mysqli_stmt_bind_param($stmt, "ii", $postId, $userId);
-            mysqli_stmt_execute($stmt);
-            mysqli_stmt_store_result($stmt);
+            mysqli_stmt_bind_param($stmt, "iii", $postId, $userId, $voteValue);
 
-            //probably will have to make some changes in the case that a vote is recorded with a voteValue of 0
-
-            if (mysqli_stmt_num_rows($stmt) > 0) {
-                echo 'This user already liked this post';
+            if (mysqli_stmt_execute($stmt)) {
+                echo 'Vote sent successfully';
+                return true;
             } else {
-                // Insert the vote into the database
-                $sql = "INSERT INTO goodVotes (postId, userId, voteValue) VALUES (?, ?, ?)";
-                $stmt = mysqli_prepare($conn, $sql);
-                mysqli_stmt_bind_param($stmt, "iii", $postId, $userId, $voteValue);
-
-                if (mysqli_stmt_execute($stmt)) {
-                    echo 'Vote sent successfully';
-                    return true;
-                } else {
-                    echo 'Error: ' . mysqli_error($conn);
-                }
+                echo 'Error: ' . mysqli_error($conn);
             }
-        }
-        else
-        {
-            echo 'no user with id '.$userId;
         }
 
         return false;
