@@ -1,7 +1,5 @@
 <?php
 // I assume that $conn is a valid mysqli connection object, and it's included in the global scope.
-include('vote.php');
-
 $showCount = 20;
 
 function getPosts($sortType, $sortOrder, $userId = -1)
