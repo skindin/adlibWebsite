@@ -38,7 +38,7 @@
 
             echo 'Record already existed.';
 
-            if ($vote['voteValue'] == $voteValue)
+            if ($vote['voteValue'] != $voteValue)
             {
                 $sql = "UPDATE goodVotes SET voteValue = ? WHERE voteId = ?";
                 $stmt = mysqli_prepare($conn, $sql);
