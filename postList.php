@@ -49,10 +49,21 @@ function printPost($post)
 
     echo '<p id = post'.$postId.'>';
         echo "<a href = 'userPage.php?user=".$username."'>".$username.'</a><br>';
+
         echo $content.'<br>';
-        echo '<button onclick="sendVote('.$postId.', 1)">Good</button>';
+
+        echo '<button onclick="sendVote('.$postId.', 1,';
+        echo $_SESSION['user']['userId'].', ';
+        echo $_SESSION['user']['password'];
+        echo ')">Good</button>';
+
         echo $goodness;
-        echo '<button onclick="sendVote('.$postId.', -1)">Bad</button>';
+
+        echo '<button onclick="sendVote('.$postId.', -1,';
+        echo $_SESSION['user']['userId'].', ';
+        echo $_SESSION['user']['password'];
+        echo ')">Bad</button>';
+
         echo '<br>Posted '.$timeStamp;
     echo '</p>';
 }
