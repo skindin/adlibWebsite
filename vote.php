@@ -38,7 +38,7 @@
 
             $vote = mysqli_fetch_assoc($result);
 
-            echo 'Record already existed. ';
+            echo 'Vote already existed. ';
 
             if ($vote['voteValue'] != $voteValue)
             {
@@ -60,7 +60,7 @@
 
                 echo 'Vote was already set to '.$voteValue.' Vote removed. ';
 
-                $modify = -$vote['voteValue'];
+                $modify = -$voteValue;
             }
         } else {
             // Insert the vote into the database
