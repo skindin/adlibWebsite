@@ -27,6 +27,11 @@
         $result = mysqli_stmt_get_result($stmt);
         //probably will have to make some changes in the case that a vote is recorded with a voteValue of 0
 
+        foreach ($result as $vote)
+        {
+            echo $vote['voteId'].' ';
+        }
+
         if (mysqli_stmt_num_rows($stmt) > 0) {
 
             $vote = mysqli_fetch_assoc($result);
@@ -47,9 +52,6 @@
             {
                 echo 'Vote was already set to '.$voteValue;
             }
-
-
-
         } else {
             // Insert the vote into the database
             $sql = "INSERT INTO goodVotes (postId, userId, voteValue) VALUES (?, ?, ?)";
