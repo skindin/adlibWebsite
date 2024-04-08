@@ -65,7 +65,7 @@ function getUserFromId ($userId)
 
 function testPassWithId ($userId, $password)
 {
-    $user = getUser($userId);
+    $user = getUserFromId($userId);
     if (!$user) {
         // No user found
         echo 'no users with that username';
