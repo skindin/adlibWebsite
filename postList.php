@@ -80,46 +80,63 @@ function printPopular($userId = -1)
 }
 ?>
 
-<!-- <script>
-    // Establish WebSocket connection
-    var ws = new WebSocket('ws://sheblankmyblanktilliblank.com:8080');
+<script>
+    // // Establish WebSocket connection
+    // var ws = new WebSocket('ws://sheblankmyblanktilliblank.com:8080');
 
-    // Event handler for WebSocket connection establishment
-    ws.onopen = function(event)
-    {
-        console.log('WebSocket connection established.');
-    };
+    // // Event handler for WebSocket connection establishment
+    // ws.onopen = function(event)
+    // {
+    //     console.log('WebSocket connection established.');
+    // };
 
-    // Event handler for receiving messages from the server
-    ws.onmessage = function(event)
-    {
-        // Process messages received from the server
-        console.log('Message received from server:', event.data);
-        // Update UI based on received message (e.g., update vote counts)
-    };
+    // // Event handler for receiving messages from the server
+    // ws.onmessage = function(event)
+    // {
+    //     // Process messages received from the server
+    //     console.log('Message received from server:', event.data);
+    //     // Update UI based on received message (e.g., update vote counts)
+    // };
 
-    // Event handler for WebSocket connection closure
-    ws.onclose = function(event)
-    {
-        console.log('WebSocket connection closed.');
-    };
+    // // Event handler for WebSocket connection closure
+    // ws.onclose = function(event)
+    // {
+    //     console.log('WebSocket connection closed.');
+    // };
 
-    // Event handler for WebSocket errors
-    ws.onerror = function(event)
-    {
-        console.error('WebSocket error:', event);
-    };
+    // // Event handler for WebSocket errors
+    // ws.onerror = function(event)
+    // {
+    //     console.error('WebSocket error:', event);
+    // };
 
     // Function to send vote to server
     function sendVote(postId, voteValue)
     {
-        // Construct vote message
-        var voteMessage = {
-            postId: postId,
-            voteValue: voteValue
-        };
+        // Create an XMLHttpRequest object
+        var xhr = new XMLHttpRequest();
 
-        // Send vote message to server
-        ws.send(JSON.stringify(voteMessage));
+        // Define the PHP file you want to send the data to
+        var url = "vote.php";
+
+        // Specify the data you want to send to the PHP file
+        var params = "postId=" + postId + "&voteValue=" + voteValue;
+
+        // Open a connection to the server
+        xhr.open("POST", url, true);
+
+        // Set the content type header
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+        // Define what happens on successful data submission
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+                // Code to execute on successful response from server
+                console.log(xhr.responseText);
+            }
+        }
+
+        // Send the request with the data
+        xhr.send(params);
     }
-</script> -->
+</script>
