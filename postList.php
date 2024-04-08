@@ -170,7 +170,7 @@ function printPopular($userId = -1)
             }
         });
 
-        var voteCounter = container.querySelector('voteCounte');
+        var voteCounter = container.querySelector('.voteCount');
 
         var currentVotes = parseInt(voteCounter.textContent);
 
