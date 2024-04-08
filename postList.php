@@ -41,22 +41,40 @@ function getPosts($sortType, $sortOrder, $userId = -1)
 
 function printPost($post)
 {
+    global $conn;
+
     $username = $post['username'];
     $content = $post['content'];
     $goodness = $post['goodness'];
     $postId = $post['postId'];
     $timeStamp = $post['timeStamp'];
 
+    $sql = "SELECT * FROM goodVotes WHERE postId = ? AND userId = ? LIMIT 1";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "ii", $postId, $_SESSION['user']['userId']);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+
+    $voteValue = 0;
+    if (mysqli_num_rows($result) > 0)
+    {
+        $voteValue = mysqli_fetch_assoc($result)['voteValue'];
+    }
+
     echo '<p id = post'.$postId.'>';
         echo "<a href = 'userPage.php?user=".$username."'>".$username.'</a><br>';
 
         echo $content.'<br>';
 
-        echo '<button class = "voteButton" onclick="sendVote('.$postId.', 1)">Good</button>';
+        echo '<button class = "voteButton';
+        if ($voteValue > 0) echo ' selected'
+        echo '" onclick="sendVote('.$postId.', 1)">Good</button>';
 
         echo '<span class = voteCount>'. $goodness .'</span>';
 
-        echo '<button class = "voteButton" onclick="sendVote('.$postId.', -1)">Bad</button>';
+        echo '<button class = "voteButton';
+        if ($voteValue < 0) echo ' selected'
+        echo '" onclick="sendVote('.$postId.', -1)">Bad</button>';
 
         echo '<br>Posted '.$timeStamp;
     echo '</p>';
@@ -64,6 +82,11 @@ function printPost($post)
 
 function printPosts($posts)
 {
+    echo '<style> .selected {
+        background-color: rgb(34, 189, 255);
+        color: white; /* Optional: Change text color for better contrast */
+    }</style>';
+
     foreach ($posts as $post)
     {
         printPost($post);
