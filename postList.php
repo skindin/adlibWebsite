@@ -104,7 +104,7 @@ function printOrder ($userId = -1)
 function printRecent($userId = -1)
 {
     echo '<form method = "GET">
-    <input type="popular" value = "Order: Popular">
+    <input type="submit" value = "Order: Popular" name = popular>
     </form>';
 
     $posts = getPosts('postId', 'DESC', $userId);
@@ -114,7 +114,7 @@ function printRecent($userId = -1)
 function printPopular($userId = -1)
 {
     echo '<form method = "GET">
-    <input type="recent" value = "Order: Recent">
+    <input type="submit" value = "Order: Recent" name = recent>
     </form>';
 
     $posts = getPosts('goodness', 'DESC', $userId);
