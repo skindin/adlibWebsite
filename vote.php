@@ -24,8 +24,7 @@
         $stmt = mysqli_prepare($conn, $sql);
         mysqli_stmt_bind_param($stmt, "ii", $postId, $userId);
         mysqli_stmt_execute($stmt);
-        $result = mysqli_stmt_store_result($stmt);
-
+        $result = mysqli_stmt_get_result($stmt);
         //probably will have to make some changes in the case that a vote is recorded with a voteValue of 0
 
         if (mysqli_stmt_num_rows($stmt) > 0) {
@@ -40,7 +39,7 @@
                 $stmt = mysqli_prepare($conn, $sql);
                 mysqli_stmt_bind_param($stmt, "ii", $voteValue, $vote['voteId']);
                 mysqli_stmt_execute($stmt);
-                $result = mysqli_stmt_store_result($stmt);
+                // $result = mysqli_stmt_store_result($stmt);
 
                 echo 'Set vote value to '.$voteValue;
             }
