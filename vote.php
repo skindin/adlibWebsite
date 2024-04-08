@@ -32,7 +32,7 @@
             echo $vote['voteId'].' ';
         }
 
-        if (mysqli_stmt_num_rows($stmt) > 0) {
+        if (mysqli_num_rows($result) > 0) {
 
             $vote = mysqli_fetch_assoc($result);
 
