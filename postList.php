@@ -120,7 +120,7 @@ function printPopular($userId = -1)
         var url = "vote.php";
 
         // Specify the data you want to send to the PHP file
-        var params = "postId=" + postId + "&voteValue=" + voteValue + "&userId=" + userId + "&passHash=" + password_hash;
+        var params = "postId=" + postId + "&voteValue=" + voteValue + "&userId=" + userId + "&passHash=" + passHash;
 
         // Open a connection to the server
         xhr.open("POST", url, true);
