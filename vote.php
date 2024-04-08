@@ -53,8 +53,14 @@
             }
             else
             {
-                echo 'Vote was already set to '.$voteValue.' Resetting. ';
-                $modify = -$voteValue * 2;
+                $sql = "DELETE FROM goodVotes WHERE voteId = ?";
+                $stmt = mysqli_prepare($conn, $sql);
+                mysqli_stmt_bind_param($stmt, "i", $vote['voteId']);
+                mysqli_stmt_execute($stmt);
+
+                echo 'Vote was already set to '.$voteValue.' Vote removed. ';
+
+                $modify = -$vote['voteValue'];
             }
         } else {
             // Insert the vote into the database
