@@ -48,7 +48,7 @@
                 mysqli_stmt_execute($stmt);
                 // $result = mysqli_stmt_store_result($stmt);
 
-                echo 'Set vote value to '.$voteValue.' ';\
+                echo 'Set vote value to '.$voteValue.' ';
                 $modify = $voteValue * 2;
             }
             else
