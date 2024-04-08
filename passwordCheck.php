@@ -109,6 +109,8 @@ function testCredentials($username, $password) {
         // echo 'Error: '.$password.' doesnt correspond with '.$user['password'];
         return false;
     }
+
+    // BRUH IT'S SENDING THE PASSWORD RIGHT HERE
 }
 
 function login ($redirect = true)
