@@ -104,7 +104,7 @@ function printOrder ($userId = -1)
 function printRecent($userId = -1)
 {
     echo 'Sorting Recent';
-    echo '<button><a href = "userPage.php?';
+    echo '<button><a href = "#?';
     if (isset($_GET['user'])) 'user="'.$_GET['user']."&";
     echo "popular=Sort+Popular'>Order Popular</a></button>";
 
@@ -115,7 +115,7 @@ function printRecent($userId = -1)
 function printPopular($userId = -1)
 {
     echo 'Sorting Popular';
-    echo '<button><a href = "userPage.php?';
+    echo '<button><a href = "#?';
     if (isset($_GET['user'])) 'user="'.$_GET['user']."&";
     echo "popular=Sort+Recent'>Order Recent</a></button>";
 
