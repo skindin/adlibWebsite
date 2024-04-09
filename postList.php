@@ -93,7 +93,7 @@ function printPosts($posts)
     }
 }
 
-function printOrder ($userId = -1)
+function print ($userId = -1)
 {
     if (isset($_GET['popular']))
         printPopular($userId);
@@ -103,10 +103,10 @@ function printOrder ($userId = -1)
 
 function printRecent($userId = -1)
 {
-    echo 'Sorting Recent';
-    echo '<button><a href = "#?';
-    if (isset($_GET['user'])) 'user="'.$_GET['user']."&";
-    echo "popular=Sort+Popular'>Order Popular</a></button>";
+    if ($userId == -1)
+    echo '<form method = "GET">
+    <input type="popular" value = "Order: Popular">
+    </form>'
 
     $posts = getPosts('postId', 'DESC', $userId);
     printPosts($posts);
@@ -114,10 +114,10 @@ function printRecent($userId = -1)
 
 function printPopular($userId = -1)
 {
-    echo 'Sorting Popular';
-    echo '<button><a href = "#?';
-    if (isset($_GET['user'])) 'user="'.$_GET['user']."&";
-    echo "popular=Sort+Recent'>Order Recent</a></button>";
+    if ($userId == -1)
+    echo '<form method = "GET">
+    <input type="recent" value = "Order: Recent">
+    </form>'
 
     $posts = getPosts('goodness', 'DESC', $userId);
     printPosts($posts);
