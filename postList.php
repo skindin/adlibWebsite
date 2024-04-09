@@ -95,7 +95,7 @@ function printPosts($posts)
 
 function printOrder ($userId = -1)
 {
-    if (isset($_POST['popular']))
+    if (isset($_POST['GET']))
         printPopular($userId);
     else
         printRecent($userId);
@@ -106,7 +106,7 @@ function printRecent($userId = -1)
     if ($userId == -1)
     {
         echo 'Ordering Recent';
-        echo '<form method = "POST">
+        echo '<form method = "GET">
         <input type="submit" value = "Order Popular" name = "popular">
         </form>';
     }
@@ -120,7 +120,7 @@ function printPopular($userId = -1)
     if ($userId == -1)
     {
         echo 'Ordering Popular';
-        echo '<form method = "POST">
+        echo '<form method = "GET">
         <input type="submit" value = "Order Recent" name = "recent">
         </form>';
     }
