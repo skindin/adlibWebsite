@@ -103,10 +103,9 @@ function printOrder ($userId = -1)
 
 function printRecent($userId = -1)
 {
-    echo '<form method = "GET">
-    Sorting Recent
-    <input type="submit" value = "Sort Popular" name = "popular">
-    </form>';
+    echo '<button><a href = "userPage.php?';
+    if (isset($_GET['user'])) 'user="'.$_GET['user']."&";
+    echo "popular=Sort+Popular'>Order Popular</a></button>";
 
     $posts = getPosts('postId', 'DESC', $userId);
     printPosts($posts);
