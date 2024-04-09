@@ -104,9 +104,11 @@ function printOrder ($userId = -1)
 function printRecent($userId = -1)
 {
     if ($userId == -1)
+    {
         echo '<form method = "POST">
         <input type="submit" value = "Order Popular" name = "popular">
         </form>';
+    }
 
     $posts = getPosts('postId', 'DESC', $userId);
     printPosts($posts);
@@ -115,9 +117,11 @@ function printRecent($userId = -1)
 function printPopular($userId = -1)
 {
     if ($userId == -1)
+    {
         echo '<form method = "POST">
         <input type="submit" value = "Order Recent" name = "recent">
         </form>';
+    }
 
     $posts = getPosts('goodness', 'DESC', $userId);
     printPosts($posts);
