@@ -95,7 +95,7 @@ function printPosts($posts)
 
 function printOrder ($userId = -1)
 {
-    if (isset($_POST['GET']))
+    if (isset($_GET['popular']))
         printPopular($userId);
     else
         printRecent($userId);
